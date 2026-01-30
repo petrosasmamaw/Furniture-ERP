@@ -1,7 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const connectDB = require('./config/database');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import connectDB from './config/database.js';
+
+dotenv.config();
 
 const app = express();
 
@@ -13,19 +15,33 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api/items', require('./routes/itemRoutes'));
-app.use('/api/material-reports', require('./routes/materialReportRoutes'));
-app.use('/api/machines', require('./routes/machineRoutes'));
-app.use('/api/machine-reports', require('./routes/machineReportRoutes'));
-app.use('/api/workers', require('./routes/workerRoutes'));
-app.use('/api/orders', require('./routes/orderRoutes'));
-app.use('/api/order-reports', require('./routes/orderReportRoutes'));
-app.use('/api/purchases', require('./routes/purchaseRoutes'));
-app.use('/api/reserve-items', require('./routes/reserveItemRoutes'));
-app.use('/api/balances', require('./routes/balanceRoutes'));
-app.use('/api/balance-reports', require('./routes/balanceReportRoutes'));
-app.use('/api/credits', require('./routes/creditRoutes'));
-app.use('/api/credit-reports', require('./routes/creditReportRoutes'));
+import itemRoutes from './routes/itemRoutes.js';
+import materialReportRoutes from './routes/materialReportRoutes.js';
+import machineRoutes from './routes/machineRoutes.js';
+import machineReportRoutes from './routes/machineReportRoutes.js';
+import workerRoutes from './routes/workerRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import orderReportRoutes from './routes/orderReportRoutes.js';
+import purchaseRoutes from './routes/purchaseRoutes.js';
+import reserveItemRoutes from './routes/reserveItemRoutes.js';
+import balanceRoutes from './routes/balanceRoutes.js';
+import balanceReportRoutes from './routes/balanceReportRoutes.js';
+import creditRoutes from './routes/creditRoutes.js';
+import creditReportRoutes from './routes/creditReportRoutes.js';
+
+app.use('/api/items', itemRoutes);
+app.use('/api/material-reports', materialReportRoutes);
+app.use('/api/machines', machineRoutes);
+app.use('/api/machine-reports', machineReportRoutes);
+app.use('/api/workers', workerRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/order-reports', orderReportRoutes);
+app.use('/api/purchases', purchaseRoutes);
+app.use('/api/reserve-items', reserveItemRoutes);
+app.use('/api/balances', balanceRoutes);
+app.use('/api/balance-reports', balanceReportRoutes);
+app.use('/api/credits', creditRoutes);
+app.use('/api/credit-reports', creditReportRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

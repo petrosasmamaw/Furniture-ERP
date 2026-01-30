@@ -1,6 +1,6 @@
-const Balance = require('../models/Balance');
+import Balance from '../models/Balance.js';
 
-exports.getBalances = async (req, res) => {
+export const getBalances = async (req, res) => {
   try {
     const balances = await Balance.find();
     res.json(balances);
@@ -9,7 +9,7 @@ exports.getBalances = async (req, res) => {
   }
 };
 
-exports.getBalanceById = async (req, res) => {
+export const getBalanceById = async (req, res) => {
   try {
     const balance = await Balance.findById(req.params.id);
     if (!balance) return res.status(404).json({ message: 'Balance not found' });
@@ -19,7 +19,7 @@ exports.getBalanceById = async (req, res) => {
   }
 };
 
-exports.createBalance = async (req, res) => {
+export const createBalance = async (req, res) => {
   const balance = new Balance(req.body);
   try {
     const newBalance = await balance.save();
@@ -29,7 +29,7 @@ exports.createBalance = async (req, res) => {
   }
 };
 
-exports.updateBalance = async (req, res) => {
+export const updateBalance = async (req, res) => {
   try {
     const updatedBalance = await Balance.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedBalance) return res.status(404).json({ message: 'Balance not found' });
@@ -39,7 +39,7 @@ exports.updateBalance = async (req, res) => {
   }
 };
 
-exports.deleteBalance = async (req, res) => {
+export const deleteBalance = async (req, res) => {
   try {
     const deletedBalance = await Balance.findByIdAndDelete(req.params.id);
     if (!deletedBalance) return res.status(404).json({ message: 'Balance not found' });

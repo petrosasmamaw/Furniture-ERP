@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const machineReportSchema = new mongoose.Schema({
   machine: { type: mongoose.Schema.Types.ObjectId, ref: "Machine" },
@@ -7,4 +7,4 @@ const machineReportSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("MachineReport", machineReportSchema);
+export default mongoose.model("MachineReport", machineReportSchema);

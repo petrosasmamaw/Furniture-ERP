@@ -1,6 +1,6 @@
-const ReserveItem = require('../models/ReserveItem');
+import ReserveItem from '../models/ReserveItem.js';
 
-exports.getReserveItems = async (req, res) => {
+export const getReserveItems = async (req, res) => {
   try {
     const reserveItems = await ReserveItem.find();
     res.json(reserveItems);
@@ -9,7 +9,7 @@ exports.getReserveItems = async (req, res) => {
   }
 };
 
-exports.getReserveItemById = async (req, res) => {
+export const getReserveItemById = async (req, res) => {
   try {
     const reserveItem = await ReserveItem.findById(req.params.id);
     if (!reserveItem) return res.status(404).json({ message: 'ReserveItem not found' });
@@ -19,7 +19,7 @@ exports.getReserveItemById = async (req, res) => {
   }
 };
 
-exports.createReserveItem = async (req, res) => {
+export const createReserveItem = async (req, res) => {
   const reserveItem = new ReserveItem(req.body);
   try {
     const newReserveItem = await reserveItem.save();
@@ -29,7 +29,7 @@ exports.createReserveItem = async (req, res) => {
   }
 };
 
-exports.updateReserveItem = async (req, res) => {
+export const updateReserveItem = async (req, res) => {
   try {
     const updatedReserveItem = await ReserveItem.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedReserveItem) return res.status(404).json({ message: 'ReserveItem not found' });
@@ -39,7 +39,7 @@ exports.updateReserveItem = async (req, res) => {
   }
 };
 
-exports.deleteReserveItem = async (req, res) => {
+export const deleteReserveItem = async (req, res) => {
   try {
     const deletedReserveItem = await ReserveItem.findByIdAndDelete(req.params.id);
     if (!deletedReserveItem) return res.status(404).json({ message: 'ReserveItem not found' });

@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const machineReportController = require('../controllers/MachineReportController');
+import { getMachineReports, getMachineReportById, createMachineReport, updateMachineReport, deleteMachineReport } from '../controllers/MachineReportController.js';
 
-router.get('/', machineReportController.getMachineReports);
-router.get('/:id', machineReportController.getMachineReportById);
-router.post('/', machineReportController.createMachineReport);
-router.put('/:id', machineReportController.updateMachineReport);
-router.delete('/:id', machineReportController.deleteMachineReport);
+router.get('/', getMachineReports);
+router.get('/:id', getMachineReportById);
+router.post('/', createMachineReport);
+router.put('/:id', updateMachineReport);
+router.delete('/:id', deleteMachineReport);
 
-module.exports = router;
+export default router;

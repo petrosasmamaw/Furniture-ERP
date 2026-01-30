@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const orderReportSchema = new mongoose.Schema({
   orderName: { type: String, required: true },
@@ -14,4 +14,4 @@ const orderReportSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("OrderReport", orderReportSchema);
+export default mongoose.model("OrderReport", orderReportSchema);

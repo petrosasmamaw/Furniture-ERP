@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const machineController = require('../controllers/MachineController');
+import { getMachines, getMachineById, createMachine, updateMachine, deleteMachine } from '../controllers/MachineController.js';
 
-router.get('/', machineController.getMachines);
-router.get('/:id', machineController.getMachineById);
-router.post('/', machineController.createMachine);
-router.put('/:id', machineController.updateMachine);
-router.delete('/:id', machineController.deleteMachine);
+router.get('/', getMachines);
+router.get('/:id', getMachineById);
+router.post('/', createMachine);
+router.put('/:id', updateMachine);
+router.delete('/:id', deleteMachine);
 
-module.exports = router;
+export default router;

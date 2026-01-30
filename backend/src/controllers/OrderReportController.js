@@ -1,6 +1,6 @@
-const OrderReport = require('../models/OrderReport');
+import OrderReport from '../models/OrderReport.js';
 
-exports.getOrderReports = async (req, res) => {
+export const getOrderReports = async (req, res) => {
   try {
     const reports = await OrderReport.find();
     res.json(reports);
@@ -9,7 +9,7 @@ exports.getOrderReports = async (req, res) => {
   }
 };
 
-exports.getOrderReportById = async (req, res) => {
+export const getOrderReportById = async (req, res) => {
   try {
     const report = await OrderReport.findById(req.params.id);
     if (!report) return res.status(404).json({ message: 'OrderReport not found' });
@@ -19,7 +19,7 @@ exports.getOrderReportById = async (req, res) => {
   }
 };
 
-exports.createOrderReport = async (req, res) => {
+export const createOrderReport = async (req, res) => {
   const report = new OrderReport(req.body);
   try {
     const newReport = await report.save();
@@ -29,7 +29,7 @@ exports.createOrderReport = async (req, res) => {
   }
 };
 
-exports.updateOrderReport = async (req, res) => {
+export const updateOrderReport = async (req, res) => {
   try {
     const updatedReport = await OrderReport.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedReport) return res.status(404).json({ message: 'OrderReport not found' });
@@ -39,7 +39,7 @@ exports.updateOrderReport = async (req, res) => {
   }
 };
 
-exports.deleteOrderReport = async (req, res) => {
+export const deleteOrderReport = async (req, res) => {
   try {
     const deletedReport = await OrderReport.findByIdAndDelete(req.params.id);
     if (!deletedReport) return res.status(404).json({ message: 'OrderReport not found' });

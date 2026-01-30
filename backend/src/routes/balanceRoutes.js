@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const balanceController = require('../controllers/BalanceController');
+import { getBalances, getBalanceById, createBalance, updateBalance, deleteBalance } from '../controllers/BalanceController.js';
 
-router.get('/', balanceController.getBalances);
-router.get('/:id', balanceController.getBalanceById);
-router.post('/', balanceController.createBalance);
-router.put('/:id', balanceController.updateBalance);
-router.delete('/:id', balanceController.deleteBalance);
+router.get('/', getBalances);
+router.get('/:id', getBalanceById);
+router.post('/', createBalance);
+router.put('/:id', updateBalance);
+router.delete('/:id', deleteBalance);
 
-module.exports = router;
+export default router;

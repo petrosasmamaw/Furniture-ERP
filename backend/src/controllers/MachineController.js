@@ -1,6 +1,6 @@
-const Machine = require('../models/Machine');
+import Machine from '../models/Machine.js';
 
-exports.getMachines = async (req, res) => {
+export const getMachines = async (req, res) => {
   try {
     const machines = await Machine.find();
     res.json(machines);
@@ -9,7 +9,7 @@ exports.getMachines = async (req, res) => {
   }
 };
 
-exports.getMachineById = async (req, res) => {
+export const getMachineById = async (req, res) => {
   try {
     const machine = await Machine.findById(req.params.id);
     if (!machine) return res.status(404).json({ message: 'Machine not found' });
@@ -19,7 +19,7 @@ exports.getMachineById = async (req, res) => {
   }
 };
 
-exports.createMachine = async (req, res) => {
+export const createMachine = async (req, res) => {
   const machine = new Machine(req.body);
   try {
     const newMachine = await machine.save();
@@ -29,7 +29,7 @@ exports.createMachine = async (req, res) => {
   }
 };
 
-exports.updateMachine = async (req, res) => {
+export const updateMachine = async (req, res) => {
   try {
     const updatedMachine = await Machine.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedMachine) return res.status(404).json({ message: 'Machine not found' });
@@ -39,7 +39,7 @@ exports.updateMachine = async (req, res) => {
   }
 };
 
-exports.deleteMachine = async (req, res) => {
+export const deleteMachine = async (req, res) => {
   try {
     const deletedMachine = await Machine.findByIdAndDelete(req.params.id);
     if (!deletedMachine) return res.status(404).json({ message: 'Machine not found' });

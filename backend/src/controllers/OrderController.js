@@ -1,6 +1,6 @@
-const Order = require('../models/Order');
+import Order from '../models/Order.js';
 
-exports.getOrders = async (req, res) => {
+export const getOrders = async (req, res) => {
   try {
     const orders = await Order.find().populate('assignedWorkers');
     res.json(orders);
@@ -9,7 +9,7 @@ exports.getOrders = async (req, res) => {
   }
 };
 
-exports.getOrderById = async (req, res) => {
+export const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).populate('assignedWorkers');
     if (!order) return res.status(404).json({ message: 'Order not found' });
@@ -19,7 +19,7 @@ exports.getOrderById = async (req, res) => {
   }
 };
 
-exports.createOrder = async (req, res) => {
+export const createOrder = async (req, res) => {
   const order = new Order(req.body);
   try {
     const newOrder = await order.save();
@@ -29,7 +29,7 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-exports.updateOrder = async (req, res) => {
+export const updateOrder = async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedOrder) return res.status(404).json({ message: 'Order not found' });
@@ -39,7 +39,7 @@ exports.updateOrder = async (req, res) => {
   }
 };
 
-exports.deleteOrder = async (req, res) => {
+export const deleteOrder = async (req, res) => {
   try {
     const deletedOrder = await Order.findByIdAndDelete(req.params.id);
     if (!deletedOrder) return res.status(404).json({ message: 'Order not found' });

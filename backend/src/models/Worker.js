@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const workerSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -7,4 +7,4 @@ const workerSchema = new mongoose.Schema({
   balance: { type: Number, default: 0 }
 }, { timestamps: true });
 
-module.exports = mongoose.model("Worker", workerSchema);
+export default mongoose.model("Worker", workerSchema);

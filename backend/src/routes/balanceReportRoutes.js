@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const balanceReportController = require('../controllers/BalanceReportController');
+import { getBalanceReports, getBalanceReportById, createBalanceReport, updateBalanceReport, deleteBalanceReport } from '../controllers/BalanceReportController.js';
 
-router.get('/', balanceReportController.getBalanceReports);
-router.get('/:id', balanceReportController.getBalanceReportById);
-router.post('/', balanceReportController.createBalanceReport);
-router.put('/:id', balanceReportController.updateBalanceReport);
-router.delete('/:id', balanceReportController.deleteBalanceReport);
+router.get('/', getBalanceReports);
+router.get('/:id', getBalanceReportById);
+router.post('/', createBalanceReport);
+router.put('/:id', updateBalanceReport);
+router.delete('/:id', deleteBalanceReport);
 
-module.exports = router;
+export default router;

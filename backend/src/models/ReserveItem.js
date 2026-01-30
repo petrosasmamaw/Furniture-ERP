@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const reserveItemSchema = new mongoose.Schema({
   itemId: { type: String, required: true },
@@ -8,4 +8,4 @@ const reserveItemSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("ReserveItem", reserveItemSchema);
+export default mongoose.model("ReserveItem", reserveItemSchema);

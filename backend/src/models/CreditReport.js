@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const creditReportSchema = new mongoose.Schema({
   paymentId: { type: String, required: true },
@@ -9,4 +9,4 @@ const creditReportSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("CreditReport", creditReportSchema);  
+export default mongoose.model("CreditReport", creditReportSchema);  

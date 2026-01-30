@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const creditReportController = require('../controllers/CreditReportController');
+import { getCreditReports, getCreditReportById, createCreditReport, updateCreditReport, deleteCreditReport } from '../controllers/CreditReportController.js';
 
-router.get('/', creditReportController.getCreditReports);
-router.get('/:id', creditReportController.getCreditReportById);
-router.post('/', creditReportController.createCreditReport);
-router.put('/:id', creditReportController.updateCreditReport);
-router.delete('/:id', creditReportController.deleteCreditReport);
+router.get('/', getCreditReports);
+router.get('/:id', getCreditReportById);
+router.post('/', createCreditReport);
+router.put('/:id', updateCreditReport);
+router.delete('/:id', deleteCreditReport);
 
-module.exports = router;
+export default router;

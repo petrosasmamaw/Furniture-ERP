@@ -1,6 +1,6 @@
-const Credit = require('../models/Credit');
+import Credit from '../models/Credit.js';
 
-exports.getCredits = async (req, res) => {
+export const getCredits = async (req, res) => {
   try {
     const credits = await Credit.find();
     res.json(credits);
@@ -9,7 +9,7 @@ exports.getCredits = async (req, res) => {
   }
 };
 
-exports.getCreditById = async (req, res) => {
+export const getCreditById = async (req, res) => {
   try {
     const credit = await Credit.findById(req.params.id);
     if (!credit) return res.status(404).json({ message: 'Credit not found' });
@@ -19,7 +19,7 @@ exports.getCreditById = async (req, res) => {
   }
 };
 
-exports.createCredit = async (req, res) => {
+export const createCredit = async (req, res) => {
   const credit = new Credit(req.body);
   try {
     const newCredit = await credit.save();
@@ -29,7 +29,7 @@ exports.createCredit = async (req, res) => {
   }
 };
 
-exports.updateCredit = async (req, res) => {
+export const updateCredit = async (req, res) => {
   try {
     const updatedCredit = await Credit.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedCredit) return res.status(404).json({ message: 'Credit not found' });
@@ -39,7 +39,7 @@ exports.updateCredit = async (req, res) => {
   }
 };
 
-exports.deleteCredit = async (req, res) => {
+export const deleteCredit = async (req, res) => {
   try {
     const deletedCredit = await Credit.findByIdAndDelete(req.params.id);
     if (!deletedCredit) return res.status(404).json({ message: 'Credit not found' });

@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const reserveItemController = require('../controllers/ReserveItemController');
+import { getReserveItems, getReserveItemById, createReserveItem, updateReserveItem, deleteReserveItem } from '../controllers/ReserveItemController.js';
 
-router.get('/', reserveItemController.getReserveItems);
-router.get('/:id', reserveItemController.getReserveItemById);
-router.post('/', reserveItemController.createReserveItem);
-router.put('/:id', reserveItemController.updateReserveItem);
-router.delete('/:id', reserveItemController.deleteReserveItem);
+router.get('/', getReserveItems);
+router.get('/:id', getReserveItemById);
+router.post('/', createReserveItem);
+router.put('/:id', updateReserveItem);
+router.delete('/:id', deleteReserveItem);
 
-module.exports = router;
+export default router;

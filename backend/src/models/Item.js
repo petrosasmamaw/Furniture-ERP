@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const itemSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,4 +8,4 @@ const itemSchema = new mongoose.Schema({
   price: { type: Number, required: true }
 }, { timestamps: true });
 
-module.exports = mongoose.model("Item", itemSchema);
+export default mongoose.model("Item", itemSchema);

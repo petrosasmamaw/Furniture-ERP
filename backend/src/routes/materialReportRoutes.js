@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const materialReportController = require('../controllers/MaterialReportController');
+import { getMaterialReports, getMaterialReportById, createMaterialReport, updateMaterialReport, deleteMaterialReport } from '../controllers/MaterialReportController.js';
 
-router.get('/', materialReportController.getMaterialReports);
-router.get('/:id', materialReportController.getMaterialReportById);
-router.post('/', materialReportController.createMaterialReport);
-router.put('/:id', materialReportController.updateMaterialReport);
-router.delete('/:id', materialReportController.deleteMaterialReport);
+router.get('/', getMaterialReports);
+router.get('/:id', getMaterialReportById);
+router.post('/', createMaterialReport);
+router.put('/:id', updateMaterialReport);
+router.delete('/:id', deleteMaterialReport);
 
-module.exports = router;
+export default router;

@@ -1,6 +1,6 @@
-const Item = require('../models/Item');
+import Item from '../models/Item.js';
 
-exports.getItems = async (req, res) => {
+export const getItems = async (req, res) => {
   try {
     const items = await Item.find();
     res.json(items);
@@ -9,7 +9,7 @@ exports.getItems = async (req, res) => {
   }
 };
 
-exports.getItemById = async (req, res) => {
+export const getItemById = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) return res.status(404).json({ message: 'Item not found' });
@@ -19,7 +19,7 @@ exports.getItemById = async (req, res) => {
   }
 };
 
-exports.createItem = async (req, res) => {
+export const createItem = async (req, res) => {
   const item = new Item(req.body);
   try {
     const newItem = await item.save();
@@ -29,7 +29,7 @@ exports.createItem = async (req, res) => {
   }
 };
 
-exports.updateItem = async (req, res) => {
+export const updateItem = async (req, res) => {
   try {
     const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedItem) return res.status(404).json({ message: 'Item not found' });
@@ -39,7 +39,7 @@ exports.updateItem = async (req, res) => {
   }
 };
 
-exports.deleteItem = async (req, res) => {
+export const deleteItem = async (req, res) => {
   try {
     const deletedItem = await Item.findByIdAndDelete(req.params.id);
     if (!deletedItem) return res.status(404).json({ message: 'Item not found' });

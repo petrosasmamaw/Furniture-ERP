@@ -1,6 +1,6 @@
-const MaterialReport = require('../models/MaterialReport');
+import MaterialReport from '../models/MaterialReport.js';
 
-exports.getMaterialReports = async (req, res) => {
+export const getMaterialReports = async (req, res) => {
   try {
     const reports = await MaterialReport.find().populate('item');
     res.json(reports);
@@ -9,7 +9,7 @@ exports.getMaterialReports = async (req, res) => {
   }
 };
 
-exports.getMaterialReportById = async (req, res) => {
+export const getMaterialReportById = async (req, res) => {
   try {
     const report = await MaterialReport.findById(req.params.id).populate('item');
     if (!report) return res.status(404).json({ message: 'MaterialReport not found' });
@@ -19,7 +19,7 @@ exports.getMaterialReportById = async (req, res) => {
   }
 };
 
-exports.createMaterialReport = async (req, res) => {
+export const createMaterialReport = async (req, res) => {
   const report = new MaterialReport(req.body);
   try {
     const newReport = await report.save();
@@ -29,7 +29,7 @@ exports.createMaterialReport = async (req, res) => {
   }
 };
 
-exports.updateMaterialReport = async (req, res) => {
+export const updateMaterialReport = async (req, res) => {
   try {
     const updatedReport = await MaterialReport.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedReport) return res.status(404).json({ message: 'MaterialReport not found' });
@@ -39,7 +39,7 @@ exports.updateMaterialReport = async (req, res) => {
   }
 };
 
-exports.deleteMaterialReport = async (req, res) => {
+export const deleteMaterialReport = async (req, res) => {
   try {
     const deletedReport = await MaterialReport.findByIdAndDelete(req.params.id);
     if (!deletedReport) return res.status(404).json({ message: 'MaterialReport not found' });

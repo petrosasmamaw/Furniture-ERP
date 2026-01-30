@@ -1,6 +1,6 @@
-const CreditReport = require('../models/CreditReport');
+import CreditReport from '../models/CreditReport.js';
 
-exports.getCreditReports = async (req, res) => {
+export const getCreditReports = async (req, res) => {
   try {
     const reports = await CreditReport.find();
     res.json(reports);
@@ -9,7 +9,7 @@ exports.getCreditReports = async (req, res) => {
   }
 };
 
-exports.getCreditReportById = async (req, res) => {
+export const getCreditReportById = async (req, res) => {
   try {
     const report = await CreditReport.findById(req.params.id);
     if (!report) return res.status(404).json({ message: 'CreditReport not found' });
@@ -19,7 +19,7 @@ exports.getCreditReportById = async (req, res) => {
   }
 };
 
-exports.createCreditReport = async (req, res) => {
+export const createCreditReport = async (req, res) => {
   const report = new CreditReport(req.body);
   try {
     const newReport = await report.save();
@@ -29,7 +29,7 @@ exports.createCreditReport = async (req, res) => {
   }
 };
 
-exports.updateCreditReport = async (req, res) => {
+export const updateCreditReport = async (req, res) => {
   try {
     const updatedReport = await CreditReport.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedReport) return res.status(404).json({ message: 'CreditReport not found' });
@@ -39,7 +39,7 @@ exports.updateCreditReport = async (req, res) => {
   }
 };
 
-exports.deleteCreditReport = async (req, res) => {
+export const deleteCreditReport = async (req, res) => {
   try {
     const deletedReport = await CreditReport.findByIdAndDelete(req.params.id);
     if (!deletedReport) return res.status(404).json({ message: 'CreditReport not found' });

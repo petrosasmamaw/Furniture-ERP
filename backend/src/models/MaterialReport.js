@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const materialReportSchema = new mongoose.Schema({
   item: { type: mongoose.Schema.Types.ObjectId, ref: "Item", required: true },
@@ -9,4 +9,4 @@ const materialReportSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("MaterialReport", materialReportSchema);
+export default mongoose.model("MaterialReport", materialReportSchema);

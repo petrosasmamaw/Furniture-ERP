@@ -1,6 +1,6 @@
-const Worker = require('../models/Worker');
+import Worker from '../models/Worker.js';
 
-exports.getWorkers = async (req, res) => {
+export const getWorkers = async (req, res) => {
   try {
     const workers = await Worker.find();
     res.json(workers);
@@ -9,7 +9,7 @@ exports.getWorkers = async (req, res) => {
   }
 };
 
-exports.getWorkerById = async (req, res) => {
+export const getWorkerById = async (req, res) => {
   try {
     const worker = await Worker.findById(req.params.id);
     if (!worker) return res.status(404).json({ message: 'Worker not found' });
@@ -19,7 +19,7 @@ exports.getWorkerById = async (req, res) => {
   }
 };
 
-exports.createWorker = async (req, res) => {
+export const createWorker = async (req, res) => {
   const worker = new Worker(req.body);
   try {
     const newWorker = await worker.save();
@@ -29,7 +29,7 @@ exports.createWorker = async (req, res) => {
   }
 };
 
-exports.updateWorker = async (req, res) => {
+export const updateWorker = async (req, res) => {
   try {
     const updatedWorker = await Worker.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedWorker) return res.status(404).json({ message: 'Worker not found' });
@@ -39,7 +39,7 @@ exports.updateWorker = async (req, res) => {
   }
 };
 
-exports.deleteWorker = async (req, res) => {
+export const deleteWorker = async (req, res) => {
   try {
     const deletedWorker = await Worker.findByIdAndDelete(req.params.id);
     if (!deletedWorker) return res.status(404).json({ message: 'Worker not found' });

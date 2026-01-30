@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const creditSchema = new mongoose.Schema({
   paymentId: { type: String, unique: true },
@@ -8,4 +8,4 @@ const creditSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Credit", creditSchema);
+export default mongoose.model("Credit", creditSchema);

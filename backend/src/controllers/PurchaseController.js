@@ -1,6 +1,6 @@
-const Purchase = require('../models/Purchase');
+import Purchase from '../models/Purchase.js';
 
-exports.getPurchases = async (req, res) => {
+export const getPurchases = async (req, res) => {
   try {
     const purchases = await Purchase.find();
     res.json(purchases);
@@ -9,7 +9,7 @@ exports.getPurchases = async (req, res) => {
   }
 };
 
-exports.getPurchaseById = async (req, res) => {
+export const getPurchaseById = async (req, res) => {
   try {
     const purchase = await Purchase.findById(req.params.id);
     if (!purchase) return res.status(404).json({ message: 'Purchase not found' });
@@ -19,7 +19,7 @@ exports.getPurchaseById = async (req, res) => {
   }
 };
 
-exports.createPurchase = async (req, res) => { 
+export const createPurchase = async (req, res) => {
   const purchase = new Purchase(req.body);
   try {
     const newPurchase = await purchase.save();
@@ -29,7 +29,7 @@ exports.createPurchase = async (req, res) => {
   }
 };
 
-exports.updatePurchase = async (req, res) => {
+export const updatePurchase = async (req, res) => {
   try {
     const updatedPurchase = await Purchase.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedPurchase) return res.status(404).json({ message: 'Purchase not found' });
@@ -39,7 +39,7 @@ exports.updatePurchase = async (req, res) => {
   }
 };
 
-exports.deletePurchase = async (req, res) => {
+export const deletePurchase = async (req, res) => {
   try {
     const deletedPurchase = await Purchase.findByIdAndDelete(req.params.id);
     if (!deletedPurchase) return res.status(404).json({ message: 'Purchase not found' });
