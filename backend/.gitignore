@@ -1,0 +1,74 @@
+# ======================
+# 🔹 Node Modules
+# ======================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ======================
+# 🔹 Environment Files (SECRETS)
+# ======================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ======================
+# 🔹 Logs
+# ======================
+logs
+*.log
+
+# ======================
+# 🔹 OS Files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# 🔹 VS Code Settings
+# ======================
+.vscode/
+
+# ======================
+# 🔹 Build Folders
+# ======================
+build/
+dist/
+frontend/build/
+
+# ======================
+# 🔹 Temporary Files
+# ======================
+.tmp/
+.temp/
+.cache/
+
+# ======================
+# 🔹 MongoDB Local Files
+# ======================
+/data/db
+
+# ======================
+# 🔹 Coverage (Testing)
+# ======================
+coverage/
+
+# ======================
+# 🔹 React Specific
+# ======================
+frontend/node_modules/
+frontend/.env
+
+# ======================
+# 🔹 Backend Specific
+# ======================
+backend/node_modules/
+
+# ======================
+# 🔹 Misc
+# ======================
+*.swp
+*.swo
