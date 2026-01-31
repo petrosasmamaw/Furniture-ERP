@@ -186,6 +186,13 @@
 	font-weight: 600;
 }
 
+/* Item page tweaks */
+.item-actions .btn {
+	padding: 6px 10px;
+	font-size: 0.9rem;
+}
+
+
 .type-used {
 	color: #ef4444;
 	font-weight: 600;
@@ -220,6 +227,13 @@
 	.reports-table td {
 		padding: 8px 10px;
 	}
+}
+
+/* Inline error text for forms */
+.error-text {
+	color: #ef4444;
+	font-size: 0.9rem;
+	margin-top: 6px;
 }
 
 body {

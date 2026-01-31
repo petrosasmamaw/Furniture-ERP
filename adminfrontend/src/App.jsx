@@ -6,7 +6,6 @@ import Item from './pages/item';
 import ItemDetail from './pages/itemDetail';
 import Balance from './pages/balance';
 import Credit from './pages/credit';
-import CreditDetail from './pages/creditDetail';
 import Machine from './pages/machine';
 import MachineDetail from './pages/machineDetail';
 import Order from './pages/order';
@@ -25,7 +24,6 @@ const App = () => {
         <Route path="/items/:id" element={<ItemDetail />} />
         <Route path="/balances" element={<Balance />} />
         <Route path="/credits" element={<Credit />} />
-        <Route path="/credits/:id" element={<CreditDetail />} />
         <Route path="/machines" element={<Machine />} />
         <Route path="/machines/:id" element={<MachineDetail />} />
         <Route path="/orders" element={<Order />} />
