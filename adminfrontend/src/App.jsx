@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './pages/navbar';
 import Dashboard from './pages/dashboard';
 import Item from './pages/item';
@@ -18,7 +18,7 @@ import Worker from './pages/worker';
 
 const App = () => {
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
@@ -37,7 +37,7 @@ const App = () => {
         <Route path="/workers" element={<Worker />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
