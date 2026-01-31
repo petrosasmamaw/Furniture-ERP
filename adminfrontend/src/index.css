@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ===== Global Reset ===== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #f5f6fa;
+	color: #1f2933;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 70px;
+	background: #ffffff;
+	border-bottom: 1px solid #e4e7eb;
+	box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+	z-index: 1000;
+}
+
+.navbar-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 24px;
+}
+
+.navbar-logo {
+	font-size: 22px;
+	font-weight: 700;
+	color: #111827;
+	text-decoration: none;
+}
+
+.navbar-menu {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.navbar-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border-radius: 999px;
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	color: #374151;
+	transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.navbar-link i {
+	font-size: 14px;
+}
+
+.navbar-link:hover {
+	background: #111827;
+	color: #ffffff;
+	transform: translateY(-1px);
+}
+
+.navbar-toggle {
+	display: none;
+	flex-direction: column;
+	gap: 4px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+.navbar-toggle span {
+	width: 22px;
+	height: 2px;
+	background: #111827;
+	border-radius: 999px;
+}
+
+/* ===== Layout helper so content not hidden under fixed navbar ===== */
+.page-container {
+	max-width: 1200px;
+	margin: 80px auto 0 auto; /* 70px navbar + small gap */
+	padding: 16px 24px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+	.navbar-container {
+		padding: 0 16px;
+	}
+
+	.navbar-toggle {
+		display: flex;
+	}
+
+	.navbar-menu {
+		position: fixed;
+		top: 70px;
+		left: 0;
+		right: 0;
+		background: #ffffff;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 12px 16px 16px;
+		gap: 8px;
+		border-bottom: 1px solid #e4e7eb;
+		transform: translateY(-100%);
+		opacity: 0;
+		pointer-events: none;
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.navbar-menu.active {
+		transform: translateY(0);
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.navbar-link {
+		width: 100%;
+	}
+}
+
