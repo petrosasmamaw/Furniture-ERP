@@ -1,14 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import dns from 'dns'; // 🔹 add this
 import connectDB from './config/database.js';
 
 dotenv.config();
 
+// 🔹 Force Node to use public DNS (fix MongoDB SRV query issues)
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+
 const app = express();
 
 // Connect to database
-connectDB();
+connectDB(); // 🔹 must be AFTER dns.setServers
 
 // Middleware
 app.use(cors());

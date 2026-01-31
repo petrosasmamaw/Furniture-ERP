@@ -8,4 +8,4 @@ router.post('/', createPurchase);
 router.put('/:id', updatePurchase);
 router.delete('/:id', deletePurchase);
 
-export default router;
+export default router; 

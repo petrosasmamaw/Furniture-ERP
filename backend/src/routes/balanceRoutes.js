@@ -7,5 +7,5 @@ router.get('/:id', getBalanceById);
 router.post('/', createBalance);
 router.put('/:id', updateBalance);
 router.delete('/:id', deleteBalance);
-
-export default router;
+ 
+export default router; 

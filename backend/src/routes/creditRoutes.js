@@ -8,4 +8,4 @@ router.post('/', createCredit);
 router.put('/:id', updateCredit);
 router.delete('/:id', deleteCredit);
 
-export default router;
+export default router; 
