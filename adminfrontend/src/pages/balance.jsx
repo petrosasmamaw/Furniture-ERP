@@ -152,9 +152,9 @@ const Balance = () => {
                     <th>Payment ID</th>
                     <th>Type</th>
                     <th>Amount</th>
-                    <th>Description</th>
                     <th>Remaining Balance</th>
                     <th>Date</th>
+                    <th>Description</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,9 +163,9 @@ const Balance = () => {
                       <td>{report.paymentId}</td>
                       <td className={report.type === 'Added' ? 'type-added' : 'type-used'}>{report.type}</td>
                       <td>${report.amount.toFixed(2)}</td>
-                      <td>{report.description}</td>
                       <td>${report.remainingBalance.toFixed(2)}</td>
                       <td>{new Date(report.date).toLocaleString()}</td>
+                      <td>{report.description}</td>
                     </tr>
                   ))}
                 </tbody>
