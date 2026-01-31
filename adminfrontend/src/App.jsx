@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './pages/navbar';
+import Dashboard from './pages/dashboard';
+import Item from './pages/item';
+import ItemDetail from './pages/itemDetail';
+import Balance from './pages/balance';
+import BalanceDetail from './pages/balanceDetail';
+import Credit from './pages/credit';
+import CreditDetail from './pages/creditDetail';
+import Machine from './pages/machine';
+import MachineDetail from './pages/machineDetail';
+import Order from './pages/order';
+import OrderDetail from './pages/orderDetail';
+import Purchase from './pages/purchase';
+import Reserve from './pages/reserve';
+import Worker from './pages/worker';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/items" element={<Item />} />
+        <Route path="/items/:id" element={<ItemDetail />} />
+        <Route path="/balances" element={<Balance />} />
+        <Route path="/balances/:id" element={<BalanceDetail />} />
+        <Route path="/credits" element={<Credit />} />
+        <Route path="/credits/:id" element={<CreditDetail />} />
+        <Route path="/machines" element={<Machine />} />
+        <Route path="/machines/:id" element={<MachineDetail />} />
+        <Route path="/orders" element={<Order />} />
+        <Route path="/orders/:id" element={<OrderDetail />} />
+        <Route path="/purchases" element={<Purchase />} />
+        <Route path="/reserves" element={<Reserve />} />
+        <Route path="/workers" element={<Worker />} />
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
