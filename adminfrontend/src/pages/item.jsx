@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems, createItem, updateItem } from '../slice/itemsSlice';
+import { Link } from 'react-router-dom';
 import { fetchMaterialReports, createMaterialReport } from '../slice/materialReportsSlice';
 
 const Item = () => {
@@ -120,7 +121,7 @@ const Item = () => {
               <tbody>
                 {items.map(item => (
                   <tr key={item._id}>
-                    <td>{item.name}</td>
+                    <td> <Link to={`/items/${item._id}`}>{item.name}</Link> </td>
                     <td>{item.itemId}</td>
                     <td>{item.quantity}</td>
                     <td>${item.price?.toFixed(2)}</td>
@@ -176,8 +177,8 @@ const Item = () => {
                     <th>In Qty</th>
                     <th>Out Qty</th>
                     <th>Remaining</th>
-                    <th>Description</th>
                     <th>Date</th>
+                    <th>Description</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -187,8 +188,8 @@ const Item = () => {
                       <td>{r.inQty}</td>
                       <td>{r.outQty}</td>
                       <td>{r.remainingStock}</td>
-                      <td>{r.description}</td>
                       <td>{new Date(r.date).toLocaleString()}</td>
+                      <td>{r.description}</td>
                     </tr>
                     ))}
                 </tbody>

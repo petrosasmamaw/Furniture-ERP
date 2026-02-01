@@ -192,6 +192,37 @@
 	font-size: 0.9rem;
 }
 
+/* Item detail tweaks */
+.item-detail-summary {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 18px;
+	background: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+	margin-bottom: 20px;
+}
+
+.item-detail-summary h1 {
+	margin: 0;
+	font-size: 1.6rem;
+}
+
+.item-detail-summary p { opacity: 0.85; margin: 4px 0 0 0; }
+
+/* link style for item rows */
+.reports-table a {
+	color: #111827;
+	text-decoration: none;
+	font-weight: 600;
+}
+.reports-table a:hover {
+	color: #667eea;
+	text-decoration: underline;
+}
+
+
 
 .type-used {
 	color: #ef4444;
