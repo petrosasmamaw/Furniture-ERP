@@ -6,8 +6,8 @@ import { fetchMaterialReports, createMaterialReport } from '../slice/materialRep
 
 const Item = () => {
   const dispatch = useDispatch();
-  const { items, status: itemsStatus } = useSelector((state) => state.items);
-  const { materialReports, status: reportsStatus } = useSelector((state) => state.materialReports);
+  const { items } = useSelector((state) => state.items);
+  const { materialReports } = useSelector((state) => state.materialReports);
 
   const [createForm, setCreateForm] = useState({ name: '', itemId: '', description: '', quantity: '', price: '' });
   const [editForm, setEditForm] = useState({ id: '', name: '', itemId: '', description: '', quantity: '', price: '' });

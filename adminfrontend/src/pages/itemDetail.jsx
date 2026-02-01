@@ -33,6 +33,7 @@ const ItemDetail = () => {
           <div>
             <h1>{name}</h1>
             <p style={{opacity: 0.9}}>ID: {itemId}</p>
+            <p style={{opacity: 0.85}}>Description: {description || '—'}</p>
           </div>
           <div className="current-balance">
             <h2>Qty: {quantity} — ${price?.toFixed(2)}</h2>

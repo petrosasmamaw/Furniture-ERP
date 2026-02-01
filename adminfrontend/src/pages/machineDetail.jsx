@@ -30,6 +30,7 @@ const MachineDetail = () => {
           <div>
             <h1>{name}</h1>
             <p style={{opacity:0.9}}>Serial: {serialNumber}</p>
+            <p style={{opacity:0.85}}>Desc: {description || '—'}</p>
             <p style={{opacity:0.85}}>Worker: {worker || '—'}</p>
           </div>
           <div className="current-balance">
