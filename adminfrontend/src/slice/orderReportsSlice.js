@@ -8,6 +8,11 @@ export const fetchOrderReports = createAsyncThunk('orderReports/fetchOrderReport
   return response.data;
 });
 
+export const fetchOrderReportsByItemId = createAsyncThunk('orderReports/fetchOrderReportsByItemId', async (itemId) => {
+  const response = await axios.get(`${API_BASE}/order-reports/item/${itemId}`);
+  return response.data;
+});
+
 export const fetchOrderReportById = createAsyncThunk('orderReports/fetchOrderReportById', async (id) => {
   const response = await axios.get(`${API_BASE}/order-reports/${id}`);
   return response.data;
@@ -43,6 +48,10 @@ const orderReportsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchOrderReports.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.orderReports = action.payload;
+      })
+      .addCase(fetchOrderReportsByItemId.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.orderReports = action.payload;
       })

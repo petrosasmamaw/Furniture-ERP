@@ -48,3 +48,19 @@ export const deleteOrderReport = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+export const getOrderReportsByItemId = async (req, res) => {
+  try {
+    const { itemId } = req.params;
+    // match either the top-level itemId field or any itemsUsed.item entries
+    const reports = await OrderReport.find({
+      $or: [
+        { itemId },
+        { 'itemsUsed.item': itemId }
+      ]
+    });
+    res.json(reports);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

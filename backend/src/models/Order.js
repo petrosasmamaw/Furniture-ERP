@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
   finishDate: Date,
   paidAmount: { type: Number, default: 0 },
   unpaidAmount: { type: Number, default: 0 },
-  assignedWorkers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Worker" }],
+  assignedWorkers: { type: String },
   planOfWork: String,
   paymentCode: String,
   description: String

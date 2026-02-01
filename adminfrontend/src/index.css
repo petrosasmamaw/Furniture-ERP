@@ -151,6 +151,25 @@
 	text-align: center;
 }
 
+/* Orders-specific tweaks */
+.orders-summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.reports-table table th:nth-child(6),
+.reports-table table td:nth-child(6) {
+  text-align: center;
+  width: 90px;
+}
+
+.workers-col { min-width: 180px; font-style: italic; color:#374151 }
+
+/* Order detail tweaks */
+.order-detail-header p { margin: 4px 0; opacity: 0.9 }
+.reports-table table td:nth-child(1) { max-width: 360px; }
+
 .reports-table {
 	overflow-x: auto;
 }
