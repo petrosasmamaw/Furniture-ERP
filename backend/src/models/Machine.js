@@ -4,6 +4,7 @@ const machineSchema = new mongoose.Schema({
   name: { type: String, required: true },
   serialNumber: { type: String, unique: true },
   description: String,
+  worker: { type: String },
   price: Number,
   status: {
     type: String,

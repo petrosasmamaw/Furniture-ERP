@@ -222,6 +222,24 @@
 	text-decoration: underline;
 }
 
+/* Machine status badges */
+.status-badge {
+	padding: 6px 10px;
+	border-radius: 999px;
+	font-weight: 600;
+	font-size: 0.85rem;
+}
+.status-In-Store { background: #eef2ff; color: #4f46e5; }
+.status-In-Hand-of-Worker { background: #fffbeb; color: #b45309; }
+.status-In-Maintenance { background: #fff1f2; color: #b91c1c; }
+
+/* Worker column styling */
+.worker-col {
+  font-style: italic;
+  color: #374151;
+  min-width: 120px;
+}
+
 
 
 .type-used {
