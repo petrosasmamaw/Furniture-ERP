@@ -9,7 +9,7 @@ const OrderDetail = () => {
   const dispatch = useDispatch();
 
   const { currentOrder, status: orderStatus } = useSelector((state) => state.orders);
-  const { orderReports, status: reportsStatus } = useSelector((state) => state.orderReports);
+  const { orderReports } = useSelector((state) => state.orderReports);
 
   const [form, setForm] = useState({ itemsUsed: '', progressPercent: '', description: '' });
 

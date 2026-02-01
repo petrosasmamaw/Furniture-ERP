@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrders, createOrder, updateOrder, deleteOrder } from '../slice/ordersSlice';
+import { fetchBalances, createBalance, updateBalance } from '../slice/balancesSlice';
+import { fetchBalanceReports, createBalanceReport } from '../slice/balanceReportsSlice';
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,18 @@ const Order = () => {
 
   useEffect(() => {
     dispatch(fetchOrders());
+    dispatch(fetchBalances());
+    dispatch(fetchBalanceReports());
   }, [dispatch]);
+
+  const { balances } = useSelector((state) => state.balances);
+  const { balanceReports } = useSelector((state) => state.balanceReports);
+
+  const sortedBalanceReports = [...(balanceReports || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const currentBalance = sortedBalanceReports.length > 0
+    ? sortedBalanceReports[0].remainingBalance
+    : (balances || []).reduce((sum, bal) => sum + (bal.amount || 0), 0);
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -32,7 +45,33 @@ const Order = () => {
         description: createForm.description
       };
       await dispatch(createOrder(payload)).unwrap();
-      setCreateForm({ orderName: '', startDate: '', finishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '' });
+
+      const paid = parseFloat(payload.paidAmount) || 0;
+      if (paid > 0) {
+        const reportData = {
+          paymentId: payload.paymentCode,
+          type: 'Added',
+          amount: paid,
+          description: `Paid amount of ${payload.orderName}`,
+          remainingBalance: currentBalance + paid,
+          date: new Date()
+        };
+
+        await dispatch(createBalanceReport(reportData));
+
+        // update central balance if exists, otherwise create one
+        if (balances && balances.length > 0) {
+          const main = balances[0];
+          await dispatch(updateBalance({ id: main._id, balance: { paymentId: reportData.paymentId, amount: reportData.remainingBalance, description: reportData.description, date: reportData.date } })).unwrap();
+        } else {
+          await dispatch(createBalance({ paymentId: reportData.paymentId, amount: reportData.remainingBalance, description: reportData.description, date: reportData.date })).unwrap();
+        }
+
+        dispatch(fetchBalanceReports());
+        dispatch(fetchBalances());
+      }
+
+      setCreateForm({ orderName: '', startDate: '', finishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '', assignedWorkers: '' });
       dispatch(fetchOrders());
     } catch (err) {
       console.error('Create order error', err);
