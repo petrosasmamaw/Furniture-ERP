@@ -14,6 +14,15 @@
 	margin: 0 auto;
 }
 
+/* ===== Reserve Page Styles ===== */
+.reserve-page { padding: 20px; max-width: 1200px; margin: 0 auto; }
+.reserve-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 18px; border-radius: 12px; }
+.reports-table table th:nth-child(6),
+.reports-table table td:nth-child(6) { text-align: center; }
+.item-actions .btn { margin-right: 8px; padding: 6px 10px; }
+.reports-table table td { vertical-align: middle; }
+
+
 .balance-header {
 	display: flex;
 	justify-content: space-between;
