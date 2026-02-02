@@ -266,6 +266,9 @@
 	font-weight: 600;
 }
 
+/* Purchase tweaks */
+.items-col { max-width: 380px; font-style: italic; color: #374151 }
+
 /* ===== Responsive Balance Page ===== */
 @media (max-width: 768px) {
 	.balance-header {

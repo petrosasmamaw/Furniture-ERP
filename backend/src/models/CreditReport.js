@@ -9,4 +9,4 @@ const creditReportSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-export default mongoose.model("CreditReport", creditReportSchema);  
+export default mongoose.model("CreditReport", creditReportSchema);   

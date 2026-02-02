@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
 
 const purchaseSchema = new mongoose.Schema({
-  item: { type: String, required: true },
-  quantity: { type: Number, required: true },
+ itemsUsed: [
+    {
+      item: String,
+      quantity: Number
+    }
+  ],
   price: { type: Number, required: true },
   paymentType: { type: String, enum: ["Balance", "Credit"] },
+  paymentId: String,
   description: String,
   date: { type: Date, default: Date.now }
 });
