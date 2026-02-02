@@ -12,7 +12,6 @@ import Order from './pages/order';
 import OrderDetail from './pages/orderDetail';
 import Purchase from './pages/purchase';
 import Reserve from './pages/reserve';
-import Worker from './pages/worker';
 
 const App = () => {
   return (
@@ -30,7 +29,6 @@ const App = () => {
         <Route path="/orders/:id" element={<OrderDetail />} />
         <Route path="/purchases" element={<Purchase />} />
         <Route path="/reserves" element={<Reserve />} />
-        <Route path="/workers" element={<Worker />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
     </>
