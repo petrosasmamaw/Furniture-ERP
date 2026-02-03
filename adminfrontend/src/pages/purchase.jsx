@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPurchases, createPurchase, updatePurchase, deletePurchase } from '../slice/purchasesSlice';
+import { ethiopianNow } from '../utils/ethiopianDate';
 import { fetchBalances, updateBalance } from '../slice/balancesSlice';
 import { fetchBalanceReports, createBalanceReport } from '../slice/balanceReportsSlice';
 import { fetchCredits, updateCredit } from '../slice/creditsSlice';
@@ -53,7 +54,7 @@ const Purchase = () => {
       paymentType: createForm.paymentType,
       paymentId: createForm.paymentId,
       description: createForm.description,
-      date: new Date()
+      date: ethiopianNow().toString()
     };
     try {
       await dispatch(createPurchase(payload)).unwrap();
@@ -119,7 +120,7 @@ const Purchase = () => {
       paymentType: editForm.paymentType,
       paymentId: editForm.paymentId,
       description: editForm.description,
-      date: new Date()
+      date: ethiopianNow().toString()
     };
     try {
       await dispatch(updatePurchase({ id: editForm.id, purchase: payload })).unwrap();
@@ -170,7 +171,7 @@ const Purchase = () => {
                     <td>${(p.price || 0).toFixed(2)}</td>
                     <td>{p.paymentType || '—'}</td>
                     <td>{p.description || '—'}</td>
-                    <td>{p.date ? new Date(p.date).toLocaleString() : '—'}</td>
+                    <td>{p.date ? (typeof p.date === 'string' ? p.date : new Date(p.date).toLocaleString()) : '—'}</td>
                     <td>
                       <button className="btn" onClick={() => startEdit(p)}>Edit</button>
                       <button className="btn btn-danger" onClick={() => handleDelete(p._id)} style={{marginLeft:8}}>Delete</button>

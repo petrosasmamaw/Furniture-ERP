@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrders, createOrder, updateOrder, deleteOrder } from '../slice/ordersSlice';
+import { ethiopianNow } from '../utils/ethiopianDate';
 import { fetchBalances, createBalance, updateBalance } from '../slice/balancesSlice';
 import { fetchBalanceReports, createBalanceReport } from '../slice/balanceReportsSlice';
 
@@ -54,7 +55,7 @@ const Order = () => {
           amount: paid,
           description: `Paid amount of ${payload.orderName}`,
           remainingBalance: currentBalance + paid,
-          date: new Date()
+          date: ethiopianNow().toString()
         };
 
         await dispatch(createBalanceReport(reportData));

@@ -70,7 +70,7 @@ const Reserve = () => {
           inQty: 0,
           outQty: amount,
           remainingStock: newQty,
-          date: new Date()
+          date: ethiopianNow().toString()
         })).unwrap()
       }
       resetForm()

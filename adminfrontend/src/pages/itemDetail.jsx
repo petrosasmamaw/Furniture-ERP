@@ -62,7 +62,7 @@ const ItemDetail = () => {
                       <td>{r.inQty}</td>
                       <td>{r.outQty}</td>
                       <td>{r.remainingStock}</td>
-                      <td>{new Date(r.date).toLocaleString()}</td>
+                      <td>{typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString()}</td>
                        <td>{r.description}</td>
                     </tr>
                   ))}

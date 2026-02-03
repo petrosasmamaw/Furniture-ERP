@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchOrderById } from '../slice/ordersSlice';
 import { fetchOrderReportsByItemId, createOrderReport } from '../slice/orderReportsSlice';
+import { ethiopianNow } from '../utils/ethiopianDate'
 import { fetchReserveItemsByOrderName } from '../slice/reserveItemsSlice';
 
 const OrderDetail = () => {
@@ -42,7 +43,7 @@ const OrderDetail = () => {
       itemsUsed: items,
       progressPercent: parseFloat(form.progressPercent) || 0,
       description: form.description,
-      date: new Date()
+      date: ethiopianNow().toString()
     };
 
     try {
@@ -114,7 +115,7 @@ const OrderDetail = () => {
                       <td>{(r.itemsUsed || []).map(it => `${it.item} x${it.quantity}`).join(', ')}</td>
                       <td>{r.progressPercent}%</td>
                       <td>{r.description}</td>
-                      <td>{new Date(r.date).toLocaleString()}</td>
+                      <td>{typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>

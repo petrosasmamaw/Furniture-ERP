@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBalances, createBalance } from '../slice/balancesSlice';
 import { fetchBalanceReports, createBalanceReport } from '../slice/balanceReportsSlice';
+import { ethiopianNow } from '../utils/ethiopianDate';
 
 const Balance = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const Balance = () => {
       amount,
       description: cashInForm.description,
       remainingBalance: currentBalance + amount,
-      date: new Date()
+      date: ethiopianNow().toString()
     };
 
     try {
@@ -63,7 +64,7 @@ const Balance = () => {
       amount,
       description: cashOutForm.description,
       remainingBalance: currentBalance - amount,
-      date: new Date()
+      date: ethiopianNow().toString()
     };
 
     try {
@@ -164,7 +165,7 @@ const Balance = () => {
                       <td className={report.type === 'Added' ? 'type-added' : 'type-used'}>{report.type}</td>
                       <td>${report.amount.toFixed(2)}</td>
                       <td>${report.remainingBalance.toFixed(2)}</td>
-                      <td>{new Date(report.date).toLocaleString()}</td>
+                      <td>{typeof report.date === 'string' ? report.date : new Date(report.date).toLocaleString()}</td>
                       <td>{report.description}</td>
                     </tr>
                   ))}

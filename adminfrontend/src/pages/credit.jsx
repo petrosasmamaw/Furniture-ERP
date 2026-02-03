@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCredits, createCredit } from '../slice/creditsSlice';
 import { fetchCreditReports, createCreditReport } from '../slice/creditReportsSlice';
+import { ethiopianNow } from '../utils/ethiopianDate';
 
 const Credit = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Credit = () => {
       amount,
       description: creditInForm.description,
       remainingCredit: currentCredit + amount,
-      date: new Date()
+      date: ethiopianNow().toString()
     };
 
     try {
@@ -76,7 +77,7 @@ const Credit = () => {
       amount,
       description: creditOutForm.description,
       remainingCredit: currentCredit - amount,
-      date: new Date()
+      date: ethiopianNow().toString()
     };
 
     try {
@@ -177,7 +178,7 @@ const Credit = () => {
                       <td className={report.type === 'Credit Taken' ? 'type-added' : 'type-used'}>{report.type}</td>
                       <td>${report.amount.toFixed(2)}</td>
                       <td>${report.remainingCredit.toFixed(2)}</td>
-                      <td>{new Date(report.date).toLocaleString()}</td>
+                      <td>{typeof report.date === 'string' ? report.date : new Date(report.date).toLocaleString()}</td>
                       <td>{report.description}</td>
                     </tr>
                   ))}
