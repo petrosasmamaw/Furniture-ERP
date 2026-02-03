@@ -8,6 +8,7 @@ import {
   updateReserveItem,
   deleteReserveItem,
 } from '../slice/reserveItemsSlice'
+import { ethiopianNow } from '../utils/ethiopianDate'
 import { fetchItems, updateItem } from '../slice/itemsSlice'
 import { createMaterialReport } from '../slice/materialReportsSlice'
 
@@ -49,7 +50,7 @@ const Reserve = () => {
       item: selected.name,
       amount,
       description: form.description || `Reserve ${selected.name} for ${orderName}`,
-      date: new Date()
+      date: ethiopianNow().toString()
     }
 
     try {
@@ -148,29 +149,29 @@ const Reserve = () => {
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                {reserveItems && reserveItems.length ? (
-                  reserveItems.map((it) => (
-                    <tr key={it._id}>
-                      <td>{it.item}</td>
-                      <td>{it.itemId}</td>
-                      <td>{it.amount}</td>
-                      <td>{it.description || '-'}</td>
-                      <td>{new Date(it.date).toLocaleDateString()}</td>
-                      <td className="item-actions">
-                        <button className="btn" onClick={() => startEdit(it)}>Edit</button>
-                        <button className="btn btn-danger" onClick={() => handleDelete(it._id)}>Delete</button>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={6} style={{ textAlign: 'center', padding: 20 }}>
-                      No reserve items
-                    </td>
-                  </tr>
-                )}
-              </tbody>
+                      <tbody>
+                        {reserveItems && reserveItems.length ? (
+                          reserveItems.map((it) => (
+                            <tr key={it._id}>
+                              <td>{it.item}</td>
+                              <td>{it.itemId}</td>
+                              <td>{it.amount}</td>
+                              <td>{it.description || '-'}</td>
+                              <td>{typeof it.date === 'string' ? it.date : new Date(it.date).toLocaleDateString()}</td>
+                              <td className="item-actions">
+                                <button className="btn" onClick={() => startEdit(it)}>Edit</button>
+                                <button className="btn btn-danger" onClick={() => handleDelete(it._id)}>Delete</button>
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={6} style={{ textAlign: 'center', padding: 20 }}>
+                              No reserve items
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
             </table>
           </div>
         </section>

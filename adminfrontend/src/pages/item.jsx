@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems, createItem, updateItem } from '../slice/itemsSlice';
+import { ethiopianNow } from '../utils/ethiopianDate';
 import { Link } from 'react-router-dom';
 import { fetchMaterialReports, createMaterialReport } from '../slice/materialReportsSlice';
 
@@ -43,7 +44,7 @@ const Item = () => {
         inQty: qty > 0 ? qty : 0,
         outQty: 0,
         remainingStock: qty,
-        date: new Date()
+        date: ethiopianNow().toString()
       }));
 
       setCreateForm({ name: '', itemId: '', description: '', quantity: '', price: '' });
@@ -83,7 +84,7 @@ const Item = () => {
         inQty,
         outQty,
         remainingStock: qty,
-        date: new Date()
+        date: ethiopianNow().toString()
       }));
 
       setIsEditing(false);
