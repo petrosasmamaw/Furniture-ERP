@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchOrderById } from '../slice/ordersSlice';
 import { fetchOrderReportsByItemId, createOrderReport } from '../slice/orderReportsSlice';
+import { fetchReserveItemsByOrderName } from '../slice/reserveItemsSlice';
 
 const OrderDetail = () => {
   const { id } = useParams();
@@ -10,6 +11,8 @@ const OrderDetail = () => {
 
   const { currentOrder, status: orderStatus } = useSelector((state) => state.orders);
   const { orderReports } = useSelector((state) => state.orderReports);
+  const { reserveItems } = useSelector((state) => state.reserveItems);
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({ itemsUsed: '', progressPercent: '', description: '' });
 
@@ -17,6 +20,12 @@ const OrderDetail = () => {
     if (id) dispatch(fetchOrderById(id));
     if (id) dispatch(fetchOrderReportsByItemId(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (currentOrder && currentOrder.orderName) {
+      dispatch(fetchReserveItemsByOrderName(currentOrder.orderName));
+    }
+  }, [dispatch, currentOrder]);
 
   if (orderStatus === 'loading' || !currentOrder) return <div className="page-container"><p>Loading order...</p></div>;
 
@@ -56,6 +65,12 @@ const OrderDetail = () => {
           </div>
           <div className="current-balance">
             <h2>Progress reports: {(orderReports || []).length}</h2>
+            <div style={{marginTop:8}}>
+              <button className="btn btn-primary" onClick={() => navigate(`/reserves?orderName=${encodeURIComponent(currentOrder.orderName)}`)}>Create Reserve</button>
+            </div>
+            <div style={{marginTop:8}}>
+              <small>Reserves for this order: {(reserveItems || []).length}</small>
+            </div>
           </div>
         </div>
 

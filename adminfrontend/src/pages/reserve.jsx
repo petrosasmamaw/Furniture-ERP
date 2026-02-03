@@ -1,22 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import {
   fetchReserveItems,
+  fetchReserveItemsByOrderName,
   createReserveItem,
   updateReserveItem,
   deleteReserveItem,
 } from '../slice/reserveItemsSlice'
+import { fetchItems, updateItem } from '../slice/itemsSlice'
+import { createMaterialReport } from '../slice/materialReportsSlice'
 
 const Reserve = () => {
   const dispatch = useDispatch()
   const { reserveItems, status } = useSelector((state) => state.reserveItems)
+  const { items } = useSelector((state) => state.items)
+
+  const [searchParams] = useSearchParams()
+  const orderName = searchParams.get('orderName') || ''
 
   const [form, setForm] = useState({ itemId: '', item: '', amount: '', description: '' })
   const [editingId, setEditingId] = useState(null)
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchReserveItems())
-  }, [dispatch, status])
+    dispatch(fetchItems())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (orderName) dispatch(fetchReserveItemsByOrderName(orderName))
+    else if (status === 'idle') dispatch(fetchReserveItems())
+  }, [dispatch, status, orderName])
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -27,13 +40,46 @@ const Reserve = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const payload = { ...form, amount: Number(form.amount) }
-    if (editingId) {
-      await dispatch(updateReserveItem({ id: editingId, item: payload }))
-    } else {
-      await dispatch(createReserveItem(payload))
+    const selected = items.find(i => i._id === form.itemId)
+    if (!selected) return alert('Please select an item')
+    const amount = Number(form.amount) || 0
+    const payload = {
+      orderName,
+      itemId: selected._id,
+      item: selected.name,
+      amount,
+      description: form.description || `Reserve for ${orderName}`,
+      date: new Date()
     }
-    resetForm()
+
+    try {
+      if (editingId) {
+        await dispatch(updateReserveItem({ id: editingId, item: payload })).unwrap()
+      } else {
+        await dispatch(createReserveItem(payload)).unwrap()
+
+        // decrease item quantity locally via updateItem
+        const newQty = Math.max(0, (selected.quantity || 0) - amount)
+        await dispatch(updateItem({ id: selected._id, item: { ...selected, quantity: newQty } })).unwrap()
+
+        // create material report for the outflow
+        await dispatch(createMaterialReport({
+          item: selected._id,
+          description: payload.description,
+          inQty: 0,
+          outQty: amount,
+          remainingStock: newQty,
+          date: new Date()
+        })).unwrap()
+      }
+      resetForm()
+      // refresh reserve list for this order
+      if (orderName) dispatch(fetchReserveItemsByOrderName(orderName))
+      else dispatch(fetchReserveItems())
+    } catch (err) {
+      console.error('Reserve create/update error', err)
+      alert('Error creating reserve')
+    }
   }
 
   const startEdit = (it) => {
@@ -59,16 +105,25 @@ const Reserve = () => {
           <h3>{editingId ? 'Edit Reserve Item' : 'Add Reserve Item'}</h3>
           <form className="balance-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Item ID</label>
-              <input name="itemId" value={form.itemId} onChange={handleChange} required />
+              <label>Order</label>
+              <input value={orderName} readOnly />
             </div>
             <div className="form-group">
-              <label>Item Name</label>
-              <input name="item" value={form.item} onChange={handleChange} required />
+              <label>Item</label>
+              <select name="itemId" value={form.itemId} onChange={(e) => {
+                const id = e.target.value
+                const sel = items.find(i => i._id === id)
+                setForm({ ...form, itemId: id, item: sel ? sel.name : '' })
+              }} required className="item-select">
+                <option value="">-- select item --</option>
+                {items && items.map(it => (
+                  <option key={it._id} value={it._id}>{it.name} (available: {it.quantity || 0})</option>
+                ))}
+              </select>
             </div>
             <div className="form-group">
               <label>Amount</label>
-              <input name="amount" type="number" value={form.amount} onChange={handleChange} required />
+              <input name="amount" type="number" value={form.amount} onChange={handleChange} required className="amount-input" />
             </div>
             <div className="form-group">
               <label>Description</label>

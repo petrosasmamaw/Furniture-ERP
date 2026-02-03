@@ -8,6 +8,11 @@ export const fetchReserveItems = createAsyncThunk('reserveItems/fetchReserveItem
   return response.data;
 });
 
+export const fetchReserveItemsByOrderName = createAsyncThunk('reserveItems/fetchReserveItemsByOrderName', async (orderName) => {
+  const response = await axios.get(`${API_BASE}/reserve-items/order/${encodeURIComponent(orderName)}`);
+  return response.data;
+});
+
 export const fetchReserveItemById = createAsyncThunk('reserveItems/fetchReserveItemById', async (id) => {
   const response = await axios.get(`${API_BASE}/reserve-items/${id}`);
   return response.data;
@@ -42,11 +47,22 @@ const reserveItemsSlice = createSlice({
       .addCase(fetchReserveItems.pending, (state) => {
         state.status = 'loading';
       })
+      .addCase(fetchReserveItemsByOrderName.pending, (state) => {
+        state.status = 'loading';
+      })
       .addCase(fetchReserveItems.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.reserveItems = action.payload;
       })
+      .addCase(fetchReserveItemsByOrderName.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.reserveItems = action.payload;
+      })
       .addCase(fetchReserveItems.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(fetchReserveItemsByOrderName.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })

@@ -48,3 +48,13 @@ export const deleteReserveItem = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+export const getReserveItemsByOrderName = async (req, res) => {
+  try {
+    const { orderName } = req.params;
+    const reserveItems = await ReserveItem.find({ orderName });
+    res.json(reserveItems);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
