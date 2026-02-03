@@ -48,7 +48,7 @@ const Reserve = () => {
       itemId: selected._id,
       item: selected.name,
       amount,
-      description: form.description || `Reserve for ${orderName}`,
+      description: form.description || `Reserve ${selected.name} for ${orderName}`,
       date: new Date()
     }
 
@@ -108,12 +108,13 @@ const Reserve = () => {
               <label>Order</label>
               <input value={orderName} readOnly />
             </div>
-            <div className="form-group">
+              <div className="form-group">
               <label>Item</label>
               <select name="itemId" value={form.itemId} onChange={(e) => {
                 const id = e.target.value
                 const sel = items.find(i => i._id === id)
-                setForm({ ...form, itemId: id, item: sel ? sel.name : '' })
+                const desc = sel ? `Reserve ${sel.name} for ${orderName}` : ''
+                setForm({ ...form, itemId: id, item: sel ? sel.name : '', description: desc })
               }} required className="item-select">
                 <option value="">-- select item --</option>
                 {items && items.map(it => (
@@ -125,10 +126,7 @@ const Reserve = () => {
               <label>Amount</label>
               <input name="amount" type="number" value={form.amount} onChange={handleChange} required className="amount-input" />
             </div>
-            <div className="form-group">
-              <label>Description</label>
-              <input name="description" value={form.description} onChange={handleChange} />
-            </div>
+            {/* description is auto-generated from selected item and orderName */}
             <div style={{ display: 'flex', gap: 10 }}>
               <button type="submit" className="btn btn-primary">{editingId ? 'Update' : 'Create'}</button>
               <button type="button" className="btn" onClick={resetForm}>Reset</button>
