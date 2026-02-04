@@ -185,8 +185,8 @@ const Balance = () => {
                     <tr key={report._id}>
                       <td>{report.paymentId}</td>
                       <td className={report.type === 'Added' ? 'type-added' : 'type-used'}>{report.type}</td>
-                      <td>${report.amount.toFixed(2)}</td>
-                      <td>${report.remainingBalance.toFixed(2)}</td>
+                      <td>{report.amount.toFixed(2)} Birr</td>
+                      <td>{report.remainingBalance.toFixed(2)} Birr</td>
                       <td>{report.ethiopianDate || (typeof report.date === 'string' ? report.date : new Date(report.date).toLocaleString())}</td>
                       <td>{report.description}</td>
                     </tr>
