@@ -111,7 +111,7 @@ const Balance = () => {
         <div className="balance-header">
           <h1>Balance Management</h1>
           <div className="current-balance">
-            <h2>Current Balance: ${currentBalance.toFixed(2)}</h2>
+            <h2>Current Balance: {currentBalance.toFixed(2)} Birr</h2>
           </div>
         </div>
 
