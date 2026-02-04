@@ -102,7 +102,7 @@ const Credit = () => {
         <div className="balance-header">
           <h1>Credit Management</h1>
           <div className="current-balance">
-            <h2>Current Credit: ${currentCredit.toFixed(2)}</h2>
+            <h2>Current Credit: {currentCredit.toFixed(2)} Birr</h2>
           </div>
         </div>
 
