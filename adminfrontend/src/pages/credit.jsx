@@ -39,7 +39,8 @@ const Credit = () => {
       amount,
       description: creditInForm.description,
       remainingCredit: currentCredit + amount,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     };
 
     try {
@@ -77,7 +78,8 @@ const Credit = () => {
       amount,
       description: creditOutForm.description,
       remainingCredit: currentCredit - amount,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     };
 
     try {
@@ -178,7 +180,7 @@ const Credit = () => {
                       <td className={report.type === 'Credit Taken' ? 'type-added' : 'type-used'}>{report.type}</td>
                       <td>${report.amount.toFixed(2)}</td>
                       <td>${report.remainingCredit.toFixed(2)}</td>
-                      <td>{typeof report.date === 'string' ? report.date : new Date(report.date).toLocaleString()}</td>
+                      <td>{report.ethiopianDate || (typeof report.date === 'string' ? report.date : new Date(report.date).toLocaleString())}</td>
                       <td>{report.description}</td>
                     </tr>
                   ))}

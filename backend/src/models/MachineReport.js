@@ -5,6 +5,7 @@ const machineReportSchema = new mongoose.Schema({
   description: String,
   statusChange: String,
   date: { type: Date, default: Date.now },
+  ethiopianDate: { type: String, default: '' },
   worker: { type: String },
 });
 

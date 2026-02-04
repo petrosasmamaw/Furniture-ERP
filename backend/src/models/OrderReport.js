@@ -11,7 +11,8 @@ const orderReportSchema = new mongoose.Schema({
   ],
   progressPercent: { type: Number, min: 0, max: 100 },
   description: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  ethiopianDate: { type: String, default: '' }
 });
 
 export default mongoose.model("OrderReport", orderReportSchema);

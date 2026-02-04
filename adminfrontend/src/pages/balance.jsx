@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBalances, createBalance } from '../slice/balancesSlice';
+import { fetchBalances, createBalance, updateBalance } from '../slice/balancesSlice';
 import { fetchBalanceReports, createBalanceReport } from '../slice/balanceReportsSlice';
 import { ethiopianNow } from '../utils/ethiopianDate';
 
@@ -34,17 +34,28 @@ const Balance = () => {
       amount,
       description: cashInForm.description,
       remainingBalance: currentBalance + amount,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     };
 
     try {
       await dispatch(createBalanceReport(reportData));
-      await dispatch(createBalance({
-        paymentId: reportData.paymentId,
-        amount: reportData.remainingBalance,
-        description: reportData.description,
-        date: reportData.date
-      }));
+      const existing = balances.find(b => b.paymentId === reportData.paymentId);
+      if (existing) {
+        await dispatch(updateBalance({ id: existing._id, balance: {
+          paymentId: reportData.paymentId,
+          amount: reportData.remainingBalance,
+          description: reportData.description,
+          date: reportData.date
+        }}));
+      } else {
+        await dispatch(createBalance({
+          paymentId: reportData.paymentId,
+          amount: reportData.remainingBalance,
+          description: reportData.description,
+          date: reportData.date
+        }));
+      }
       setCashInForm({ paymentId: '', amount: '', description: '' });
       dispatch(fetchBalanceReports());
       dispatch(fetchBalances());
@@ -64,17 +75,28 @@ const Balance = () => {
       amount,
       description: cashOutForm.description,
       remainingBalance: currentBalance - amount,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     };
 
     try {
       await dispatch(createBalanceReport(reportData));
-      await dispatch(createBalance({
-        paymentId: reportData.paymentId,
-        amount: reportData.remainingBalance,
-        description: reportData.description,
-        date: reportData.date
-      }));
+      const existing = balances.find(b => b.paymentId === reportData.paymentId);
+      if (existing) {
+        await dispatch(updateBalance({ id: existing._id, balance: {
+          paymentId: reportData.paymentId,
+          amount: reportData.remainingBalance,
+          description: reportData.description,
+          date: reportData.date
+        }}));
+      } else {
+        await dispatch(createBalance({
+          paymentId: reportData.paymentId,
+          amount: reportData.remainingBalance,
+          description: reportData.description,
+          date: reportData.date
+        }));
+      }
       setCashOutForm({ paymentId: '', amount: '', description: '' });
       dispatch(fetchBalanceReports());
       dispatch(fetchBalances());
@@ -165,7 +187,7 @@ const Balance = () => {
                       <td className={report.type === 'Added' ? 'type-added' : 'type-used'}>{report.type}</td>
                       <td>${report.amount.toFixed(2)}</td>
                       <td>${report.remainingBalance.toFixed(2)}</td>
-                      <td>{typeof report.date === 'string' ? report.date : new Date(report.date).toLocaleString()}</td>
+                      <td>{report.ethiopianDate || (typeof report.date === 'string' ? report.date : new Date(report.date).toLocaleString())}</td>
                       <td>{report.description}</td>
                     </tr>
                   ))}

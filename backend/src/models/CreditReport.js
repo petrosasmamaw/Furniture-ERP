@@ -6,7 +6,8 @@ const creditReportSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   description: String,
   remainingCredit: { type: Number, required: true },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  ethiopianDate: { type: String, default: '' }
 });
 
 export default mongoose.model("CreditReport", creditReportSchema);   

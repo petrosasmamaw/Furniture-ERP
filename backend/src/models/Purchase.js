@@ -11,7 +11,8 @@ const purchaseSchema = new mongoose.Schema({
   paymentType: { type: String, enum: ["Balance", "Credit"] },
   paymentId: String,
   description: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  ethiopianDate: { type: String, default: '' }
 });
 
 export default mongoose.model("Purchase", purchaseSchema);

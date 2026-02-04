@@ -50,7 +50,8 @@ const Reserve = () => {
       item: selected.name,
       amount,
       description: form.description || `Reserve ${selected.name} for ${orderName}`,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     }
 
     try {
@@ -70,7 +71,8 @@ const Reserve = () => {
           inQty: 0,
           outQty: amount,
           remainingStock: newQty,
-          date: ethiopianNow().toString()
+          date: new Date().toISOString(),
+          ethiopianDate: ethiopianNow().toString()
         })).unwrap()
       }
       resetForm()

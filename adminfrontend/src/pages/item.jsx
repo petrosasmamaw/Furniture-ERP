@@ -44,7 +44,8 @@ const Item = () => {
         inQty: qty > 0 ? qty : 0,
         outQty: 0,
         remainingStock: qty,
-        date: ethiopianNow().toString()
+        date: new Date().toISOString(),
+        ethiopianDate: ethiopianNow().toString()
       }));
 
       setCreateForm({ name: '', itemId: '', description: '', quantity: '', price: '' });
@@ -84,7 +85,8 @@ const Item = () => {
         inQty,
         outQty,
         remainingStock: qty,
-        date: ethiopianNow().toString()
+        date: new Date().toISOString(),
+        ethiopianDate: ethiopianNow().toString()
       }));
 
       setIsEditing(false);
@@ -189,7 +191,7 @@ const Item = () => {
                       <td>{r.inQty}</td>
                       <td>{r.outQty}</td>
                       <td>{r.remainingStock}</td>
-                      <td>{typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString()}</td>
+                      <td>{r.ethiopianDate || (typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString())}</td>
                       <td>{r.description}</td>
                     </tr>
                     ))}

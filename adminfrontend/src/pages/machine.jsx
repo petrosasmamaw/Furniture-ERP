@@ -42,7 +42,8 @@ const Machine = () => {
         description: 'Created machine',
         statusChange: created.status,
         worker: created.worker,
-        date: ethiopianNow().toString()
+        date: new Date().toISOString(),
+        ethiopianDate: ethiopianNow().toString()
       }));
 
       setCreateForm({ name: '', serialNumber: '', description: '', price: '', status: 'In Store', worker: '' });
@@ -77,7 +78,8 @@ const Machine = () => {
           description: `Status changed: ${prevStatus} -> ${updated.status}`,
           statusChange: updated.status,
           worker: updated.worker,
-          date: ethiopianNow().toString()
+          date: new Date().toISOString(),
+          ethiopianDate: ethiopianNow().toString()
         }));
       }
 
@@ -191,7 +193,7 @@ const Machine = () => {
                         <td className="worker-col">{r.worker || '—'}</td>
                         <td>{r.statusChange}</td>
                         <td>{r.description}</td>
-                        <td>{typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString()}</td>
+                        <td>{r.ethiopianDate || (typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString())}</td>
                     </tr>
                   ))}
                 </tbody>

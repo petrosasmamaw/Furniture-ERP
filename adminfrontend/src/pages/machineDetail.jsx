@@ -59,7 +59,7 @@ const MachineDetail = () => {
                       <td className="worker-col">{r.worker || '—'}</td>
                       <td>{r.statusChange}</td>
                       <td>{r.description}</td>
-                      <td>{new Date(r.date).toLocaleString()}</td>
+                      <td>{r.ethiopianDate || (typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString())}</td>
                     </tr>
                   ))}
                 </tbody>

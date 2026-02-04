@@ -54,7 +54,8 @@ const Purchase = () => {
       paymentType: createForm.paymentType,
       paymentId: createForm.paymentId,
       description: createForm.description,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     };
     try {
       await dispatch(createPurchase(payload)).unwrap();
@@ -120,7 +121,8 @@ const Purchase = () => {
       paymentType: editForm.paymentType,
       paymentId: editForm.paymentId,
       description: editForm.description,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     };
     try {
       await dispatch(updatePurchase({ id: editForm.id, purchase: payload })).unwrap();

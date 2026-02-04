@@ -43,7 +43,8 @@ const OrderDetail = () => {
       itemsUsed: items,
       progressPercent: parseFloat(form.progressPercent) || 0,
       description: form.description,
-      date: ethiopianNow().toString()
+      date: new Date().toISOString(),
+      ethiopianDate: ethiopianNow().toString()
     };
 
     try {
@@ -115,7 +116,7 @@ const OrderDetail = () => {
                       <td>{(r.itemsUsed || []).map(it => `${it.item} x${it.quantity}`).join(', ')}</td>
                       <td>{r.progressPercent}%</td>
                       <td>{r.description}</td>
-                      <td>{typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString()}</td>
+                      <td>{r.ethiopianDate || (typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleString())}</td>
                     </tr>
                   ))}
                 </tbody>

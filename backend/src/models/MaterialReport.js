@@ -6,7 +6,8 @@ const materialReportSchema = new mongoose.Schema({
   inQty: { type: Number, default: 0 },
   outQty: { type: Number, default: 0 },
   remainingStock: { type: Number, required: true },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  ethiopianDate: { type: String, default: '' }
 });
 
 export default mongoose.model("MaterialReport", materialReportSchema);

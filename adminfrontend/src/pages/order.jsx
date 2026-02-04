@@ -55,7 +55,8 @@ const Order = () => {
           amount: paid,
           description: `Paid amount of ${payload.orderName}`,
           remainingBalance: currentBalance + paid,
-          date: ethiopianNow().toString()
+          date: new Date().toISOString(),
+          ethiopianDate: ethiopianNow().toString()
         };
 
         await dispatch(createBalanceReport(reportData));

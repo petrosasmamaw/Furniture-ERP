@@ -6,7 +6,8 @@ const balanceReportSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   description: String,
   remainingBalance: { type: Number, required: true },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  ethiopianDate: { type: String, default: '' }
 });
 
 export default mongoose.model("BalanceReport", balanceReportSchema);

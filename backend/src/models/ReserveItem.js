@@ -6,7 +6,8 @@ const reserveItemSchema = new mongoose.Schema({
   item: { type: String, required: true },
   amount: { type: Number, required: true },
   description: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  ethiopianDate: { type: String, default: '' }
 });
 
 export default mongoose.model("ReserveItem", reserveItemSchema);
