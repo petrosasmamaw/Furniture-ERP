@@ -170,7 +170,7 @@ const Purchase = () => {
                 {purchasesList.map(p => (
                   <tr key={p._id}>
                     <td className="items-col">{(p.itemsUsed || []).map(it => `${it.item} x${it.quantity}`).join(', ')}</td>
-                    <td>${(p.price || 0).toFixed(2)}</td>
+                    <td>{(p.price || 0).toFixed(2)} Birr</td>
                     <td>{p.paymentType || '—'}</td>
                     <td>{p.description || '—'}</td>
                     <td>{p.date ? (typeof p.date === 'string' ? p.date : new Date(p.date).toLocaleString()) : '—'}</td>

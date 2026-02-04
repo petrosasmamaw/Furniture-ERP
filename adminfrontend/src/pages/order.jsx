@@ -149,8 +149,8 @@ const Order = () => {
                     <td><Link to={`/orders/${o._id}`}>{o.orderName}</Link></td>
                     <td>{o.startDate ? new Date(o.startDate).toLocaleDateString() : '—'}</td>
                     <td>{o.finishDate ? new Date(o.finishDate).toLocaleDateString() : '—'}</td>
-                    <td>${(o.paidAmount || 0).toFixed(2)}</td>
-                    <td>${(o.unpaidAmount || 0).toFixed(2)}</td>
+                    <td>{(o.paidAmount || 0).toFixed(2)} Birr</td>
+                    <td>{(o.unpaidAmount || 0).toFixed(2)} Birr</td>
                     <td className="workers-col">{o.assignedWorkers || '—'}</td>
                     <td>
                       <button className="btn" onClick={() => startEdit(o)}>Edit</button>

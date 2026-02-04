@@ -36,7 +36,7 @@ const ItemDetail = () => {
             <p style={{opacity: 0.85}}>Description: {description || '—'}</p>
           </div>
           <div className="current-balance">
-            <h2>Qty: {quantity} — ${price?.toFixed(2)}</h2>
+            <h2>Qty: {quantity} — {price?.toFixed(2)} Birr</h2>
           </div>
         </div>
 

@@ -124,7 +124,7 @@ const Machine = () => {
                     <td>{m.serialNumber}</td>
                     <td className="worker-col">{m.worker || '-'}</td>
                     <td><span className={`status-badge status-${m.status.replace(/\s+/g,'-')}`}>{m.status}</span></td>
-                    <td>${m.price?.toFixed(2)}</td>
+                    <td>{m.price?.toFixed(2)} Birr</td>
                     <td>{m.description}</td>
                     <td><button className="btn" onClick={() => startEdit(m)}>Edit</button></td>
                   </tr>

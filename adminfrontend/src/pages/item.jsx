@@ -127,7 +127,7 @@ const Item = () => {
                     <td> <Link to={`/items/${item._id}`}>{item.name}</Link> </td>
                     <td>{item.itemId}</td>
                     <td>{item.quantity}</td>
-                    <td>${item.price?.toFixed(2)}</td>
+                    <td>{item.price?.toFixed(2)} Birr</td>
                     <td>{item.description}</td>
                     <td>
                       <button className="btn" onClick={() => startEdit(item)}>Edit</button>
