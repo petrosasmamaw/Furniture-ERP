@@ -24,9 +24,7 @@ const Credit = () => {
     ? sortedReports[0].remainingCredit
     : credits.reduce((sum, c) => sum + (c.amount || 0), 0);
 
-  const previewIn = (currentCredit + parseFloat(creditInForm.amount || 0));
-
-  const previewOut = (currentCredit - parseFloat(creditOutForm.amount || 0));
+  
 
   const handleCreditInSubmit = async (e) => {
     e.preventDefault();
@@ -151,6 +149,7 @@ const Credit = () => {
                 <label>Remaining Credit after transaction:</label>
                 <span>${(currentCredit - parseFloat(creditOutForm.amount || 0)).toFixed(2)}</span>
               </div>
+              {outError && <div style={{ color: 'red', marginBottom: 8 }}>{outError}</div>}
               <button type="submit" className="btn btn-danger">Add Credit Out</button>
             </form>
           </div>
