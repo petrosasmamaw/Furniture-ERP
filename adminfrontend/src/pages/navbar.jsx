@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/dashboard" className="navbar-logo" onClick={() => setIsMenuOpen(false)}>
-          ERP Admin
+          ERP_Admin
         </Link>
         <button
           className={`navbar-toggle ${isMenuOpen ? 'active' : ''}`}
