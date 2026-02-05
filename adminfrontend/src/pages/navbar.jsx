@@ -31,6 +31,7 @@ const Navbar = () => {
           <li><Link to="/machines" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-cogs"></i> Machines</Link></li>
           <li><Link to="/orders" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-shopping-cart"></i> Orders</Link></li>
           <li><Link to="/purchases" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-shopping-bag"></i> Purchases</Link></li>
+          <li><Link to="/price-calculator" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-calculator"></i> Price Calculator</Link></li>
           <li><Link to="/workers" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-users"></i> Workers</Link></li>
         </ul>
       </div>

@@ -510,3 +510,27 @@ body {
 }
 
 
+/* Price Calculator styles */
+.price-row {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 8px;
+}
+.price-input {
+	padding: 8px 10px;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	font-size: 0.95rem;
+	flex: 1 1 0;
+}
+.add-row-btn {
+	padding: 8px 12px;
+	font-size: 1.1rem;
+	background: #667eea;
+	color: #fff;
+}
+.calc-btn { background: #10b981; color: #fff; }
+.price-results { margin-top: 16px; background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #eef2f7; }
+
+

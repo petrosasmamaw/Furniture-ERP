@@ -71,7 +71,7 @@ const Dashboard = () => {
     if (r.date) {
       try {
         return new Date(r.date).toLocaleDateString();
-      } catch (e) {
+      } catch {
         return String(r.date);
       }
     }

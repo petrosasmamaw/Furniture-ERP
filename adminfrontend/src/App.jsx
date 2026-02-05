@@ -12,6 +12,7 @@ import Order from './pages/order';
 import OrderDetail from './pages/orderDetail';
 import Purchase from './pages/purchase';
 import Reserve from './pages/reserve';
+import PriceCalculator from './pages/priceCalculator';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/orders" element={<Order />} />
         <Route path="/orders/:id" element={<OrderDetail />} />
         <Route path="/purchases" element={<Purchase />} />
+        <Route path="/price-calculator" element={<PriceCalculator />} />
         <Route path="/reserves" element={<Reserve />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
