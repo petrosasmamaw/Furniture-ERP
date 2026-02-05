@@ -34,7 +34,7 @@ const Balance = () => {
       amount,
       description: cashInForm.description,
       remainingBalance: currentBalance + amount,
-      date: new Date().toISOString(),
+      date: ethiopianNow().toString(),
       ethiopianDate: ethiopianNow().toString()
     };
 
@@ -75,7 +75,7 @@ const Balance = () => {
       amount,
       description: cashOutForm.description,
       remainingBalance: currentBalance - amount,
-      date: new Date().toISOString(),
+      date: ethiopianNow().toString(),
       ethiopianDate: ethiopianNow().toString()
     };
 

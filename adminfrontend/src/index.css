@@ -491,3 +491,22 @@ body {
 	}
 }
 
+/* Chart cards */
+.chart-card {
+	background: #fff;
+	padding: 18px;
+	border-radius: 10px;
+	border: 1px solid #eef2f7;
+	box-shadow: 0 2px 14px rgba(15,23,42,0.04);
+}
+.chart-title {
+	margin: 0 0 8px 0;
+	font-size: 1rem;
+	color: #111827;
+}
+
+.chart-card canvas {
+	max-height: 240px;
+}
+
+

@@ -70,7 +70,8 @@ const Purchase = () => {
           amount: price,
           description: `Purchase: ${itemsDesc}`,
           remainingBalance: currentBalance - price,
-          date: payload.date
+          date: payload.date,
+          ethiopianDate: payload.ethiopianDate
         };
 
         await dispatch(createBalanceReport(reportData));
@@ -89,7 +90,8 @@ const Purchase = () => {
           amount: price,
           description: `Purchase: ${itemsDesc}`,
           remainingCredit: currentCredit + price,
-          date: payload.date
+          date: payload.date,
+          ethiopianDate: payload.ethiopianDate
         };
 
         await dispatch(createCreditReport(reportData));
