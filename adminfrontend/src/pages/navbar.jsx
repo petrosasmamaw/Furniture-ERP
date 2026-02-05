@@ -25,7 +25,7 @@ const Navbar = () => {
         </button>
         <ul className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <li><Link to="/dashboard" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-tachometer-alt"></i> Dashboard</Link></li>
-          <li><Link to="/balances" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-balance-scale"></i> Balances</Link></li>
+          <li><Link to="/balances" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-money-bill-wave"></i> Balances</Link></li>
           <li><Link to="/credits" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-credit-card"></i> Credits</Link></li>
           <li><Link to="/items" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-box"></i> Items</Link></li>
           <li><Link to="/machines" className="navbar-link" onClick={() => setIsMenuOpen(false)}><i className="fas fa-cogs"></i> Machines</Link></li>
