@@ -51,6 +51,7 @@ const Dashboard = () => {
 
   const totalBalance = balances.reduce((sum, b) => sum + (b.amount || 0), 0);
   const totalCredit = credits.reduce((sum, c) => sum + (c.amount || 0), 0);
+  const totalProfit = totalBalance - totalCredit;
 
   const labels = ['Items', 'Machines', 'Orders', 'Purchases', 'Material Reports', 'Reserves'];
   const data = {
@@ -164,6 +165,10 @@ const Dashboard = () => {
         <div className="card">
           <h3>Total Credit</h3>
           <p>${totalCredit.toFixed(2)}</p>
+        </div>
+        <div className="card">
+          <h3>Profit</h3>
+          <p style={{ color: totalProfit >= 0 ? '#10B981' : '#EF4444' }}>${totalProfit.toFixed(2)}</p>
         </div>
       </div>
 

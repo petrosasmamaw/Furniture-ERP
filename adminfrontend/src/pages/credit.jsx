@@ -37,7 +37,7 @@ const Credit = () => {
       amount,
       description: creditInForm.description,
       remainingCredit: currentCredit + amount,
-      date: ethiopianNow().toString(),
+      date: new Date().toISOString(),
       ethiopianDate: ethiopianNow().toString()
     };
 
@@ -76,7 +76,7 @@ const Credit = () => {
       amount,
       description: creditOutForm.description,
       remainingCredit: currentCredit - amount,
-      date: ethiopianNow().toString(),
+      date: new Date().toISOString(),
       ethiopianDate: ethiopianNow().toString()
     };
 
