@@ -164,7 +164,7 @@ const Purchase = () => {
                   <th>Price</th>
                   <th>Payment</th>
                   <th>Description</th>
-                  <th>Date</th>
+                  <th>Date (Ethiopian)</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -175,7 +175,7 @@ const Purchase = () => {
                     <td>{(p.price || 0).toFixed(2)} Birr</td>
                     <td>{p.paymentType || '—'}</td>
                     <td>{p.description || '—'}</td>
-                    <td>{p.date ? (typeof p.date === 'string' ? p.date : new Date(p.date).toLocaleString()) : '—'}</td>
+                    <td>{p.ethiopianDate || (p.date ? (typeof p.date === 'string' ? p.date : new Date(p.date).toLocaleString()) : '—')}</td>
                     <td>
                       <button className="btn" onClick={() => startEdit(p)}>Edit</button>
                       <button className="btn btn-danger" onClick={() => handleDelete(p._id)} style={{marginLeft:8}}>Delete</button>
