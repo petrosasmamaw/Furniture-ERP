@@ -153,8 +153,8 @@ const Order = () => {
                     <td>{(o.unpaidAmount || 0).toFixed(2)} Birr</td>
                     <td className="workers-col">{o.assignedWorkers || '—'}</td>
                     <td>
-                      <button className="btn" onClick={() => startEdit(o)}>Edit</button>
-                      <button className="btn btn-danger" onClick={() => handleDelete(o._id)} style={{marginLeft:8}}>Delete</button>
+                      <button className="btn btn-sm" onClick={() => startEdit(o)}>Edit</button>
+                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(o._id)} style={{marginLeft:8}}>Delete</button>
                     </td>
                   </tr>
                 ))}
