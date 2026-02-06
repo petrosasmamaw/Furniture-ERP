@@ -11,8 +11,8 @@ const Order = () => {
   const { orders } = useSelector((state) => state.orders);
   const ordersList = orders || [];
 
-  const [createForm, setCreateForm] = useState({ orderName: '', startDate: '', finishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '', assignedWorkers: '' });
-  const [editForm, setEditForm] = useState({ id: '', orderName: '', startDate: '', finishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '', assignedWorkers: '' });
+  const [createForm, setCreateForm] = useState({ orderName: '', ethiopianStartDate: '', ethiopianFinishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '', assignedWorkers: '' });
+  const [editForm, setEditForm] = useState({ id: '', orderName: '', ethiopianStartDate: '', ethiopianFinishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '', assignedWorkers: '' });
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -36,8 +36,8 @@ const Order = () => {
     try {
       const payload = {
         orderName: createForm.orderName,
-        startDate: createForm.startDate || undefined,
-        finishDate: createForm.finishDate || undefined,
+        ethiopianStartDate: createForm.ethiopianStartDate || undefined,
+        ethiopianFinishDate: createForm.ethiopianFinishDate || undefined,
         paidAmount: parseFloat(createForm.paidAmount) || 0,
         unpaidAmount: parseFloat(createForm.unpaidAmount) || 0,
         planOfWork: createForm.planOfWork,
@@ -73,7 +73,7 @@ const Order = () => {
         dispatch(fetchBalances());
       }
 
-      setCreateForm({ orderName: '', startDate: '', finishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '', assignedWorkers: '' });
+      setCreateForm({ orderName: '', ethiopianStartDate: '', ethiopianFinishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '', assignedWorkers: '' });
       dispatch(fetchOrders());
     } catch (err) {
       console.error('Create order error', err);
@@ -82,7 +82,7 @@ const Order = () => {
 
   const startEdit = (o) => {
     setIsEditing(true);
-    setEditForm({ id: o._id, orderName: o.orderName, startDate: o.startDate ? o.startDate.split('T')[0] : '', finishDate: o.finishDate ? o.finishDate.split('T')[0] : '', paidAmount: o.paidAmount || 0, unpaidAmount: o.unpaidAmount || 0, planOfWork: o.planOfWork || '', paymentCode: o.paymentCode || '', description: o.description || '', assignedWorkers: o.assignedWorkers || '' });
+    setEditForm({ id: o._id, orderName: o.orderName, ethiopianStartDate: o.ethiopianStartDate || (o.startDate ? String(o.startDate) : ''), ethiopianFinishDate: o.ethiopianFinishDate || (o.finishDate ? String(o.finishDate) : ''), paidAmount: o.paidAmount || 0, unpaidAmount: o.unpaidAmount || 0, planOfWork: o.planOfWork || '', paymentCode: o.paymentCode || '', description: o.description || '', assignedWorkers: o.assignedWorkers || '' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -92,8 +92,8 @@ const Order = () => {
     try {
       const payload = {
         orderName: editForm.orderName,
-        startDate: editForm.startDate || undefined,
-        finishDate: editForm.finishDate || undefined,
+        ethiopianStartDate: editForm.ethiopianStartDate || undefined,
+        ethiopianFinishDate: editForm.ethiopianFinishDate || undefined,
         paidAmount: parseFloat(editForm.paidAmount) || 0,
         unpaidAmount: parseFloat(editForm.unpaidAmount) || 0,
         planOfWork: editForm.planOfWork,
@@ -103,7 +103,7 @@ const Order = () => {
       };
       await dispatch(updateOrder({ id: editForm.id, order: payload })).unwrap();
       setIsEditing(false);
-      setEditForm({ id: '', orderName: '', startDate: '', finishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '' });
+      setEditForm({ id: '', orderName: '', ethiopianStartDate: '', ethiopianFinishDate: '', paidAmount: '', unpaidAmount: '', planOfWork: '', paymentCode: '', description: '' });
       dispatch(fetchOrders());
     } catch (err) {
       console.error('Update order error', err);
@@ -147,8 +147,8 @@ const Order = () => {
                 {ordersList.map(o => (
                   <tr key={o._id}>
                     <td><Link to={`/orders/${o._id}`}>{o.orderName}</Link></td>
-                    <td>{o.startDate ? new Date(o.startDate).toLocaleDateString() : '—'}</td>
-                    <td>{o.finishDate ? new Date(o.finishDate).toLocaleDateString() : '—'}</td>
+                    <td>{o.ethiopianStartDate || (o.startDate ? (typeof o.startDate === 'string' ? o.startDate : new Date(o.startDate).toLocaleDateString()) : '—')}</td>
+                    <td>{o.ethiopianFinishDate || (o.finishDate ? (typeof o.finishDate === 'string' ? o.finishDate : new Date(o.finishDate).toLocaleDateString()) : '—')}</td>
                     <td>{(o.paidAmount || 0).toFixed(2)} Birr</td>
                     <td>{(o.unpaidAmount || 0).toFixed(2)} Birr</td>
                     <td className="workers-col">{o.assignedWorkers || '—'}</td>
@@ -173,13 +173,13 @@ const Order = () => {
               </div>
 
               <div className="form-group">
-                <label>Start Date:</label>
-                <input type="date" value={isEditing ? editForm.startDate : createForm.startDate} onChange={(e) => isEditing ? setEditForm({...editForm, startDate: e.target.value}) : setCreateForm({...createForm, startDate: e.target.value})} />
+                <label>Start Date (Ethiopian):</label>
+                <input type="text" value={isEditing ? editForm.ethiopianStartDate : createForm.ethiopianStartDate} onChange={(e) => isEditing ? setEditForm({...editForm, ethiopianStartDate: e.target.value}) : setCreateForm({...createForm, ethiopianStartDate: e.target.value})} />
               </div>
 
               <div className="form-group">
-                <label>Finish Date:</label>
-                <input type="date" value={isEditing ? editForm.finishDate : createForm.finishDate} onChange={(e) => isEditing ? setEditForm({...editForm, finishDate: e.target.value}) : setCreateForm({...createForm, finishDate: e.target.value})} />
+                <label>Finish Date (Ethiopian):</label>
+                <input type="text" value={isEditing ? editForm.ethiopianFinishDate : createForm.ethiopianFinishDate} onChange={(e) => isEditing ? setEditForm({...editForm, ethiopianFinishDate: e.target.value}) : setCreateForm({...createForm, ethiopianFinishDate: e.target.value})} />
               </div>
 
               <div className="form-group">
