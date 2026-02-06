@@ -11,6 +11,7 @@ const Purchase = () => {
   const dispatch = useDispatch();
   const { purchases } = useSelector((state) => state.purchases);
   const purchasesList = purchases || [];
+  const sortedPurchases = (purchasesList || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const [createForm, setCreateForm] = useState({ itemsUsed: '', price: '', paymentType: 'Balance', paymentId: '', description: '' });
   const [editForm, setEditForm] = useState({ id: '', itemsUsed: '', price: '', paymentType: 'Balance', paymentId: '', description: '' });
@@ -169,7 +170,7 @@ const Purchase = () => {
                 </tr>
               </thead>
               <tbody>
-                {purchasesList.map(p => (
+                {sortedPurchases.map(p => (
                   <tr key={p._id}>
                     <td className="items-col">{(p.itemsUsed || []).map(it => `${it.item} x${it.quantity}`).join(', ')}</td>
                     <td>{(p.price || 0).toFixed(2)} Birr</td>
