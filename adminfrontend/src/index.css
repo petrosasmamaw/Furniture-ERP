@@ -131,6 +131,17 @@
 	letter-spacing: 0.5px;
 }
 
+/* Small button variant for compact table actions */
+.btn-sm {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.btn-sm.btn-danger { padding: 6px 8px; }
+
 .btn-primary {
 	background: #10b981;
 	color: white;

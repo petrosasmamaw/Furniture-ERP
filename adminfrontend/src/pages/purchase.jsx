@@ -178,8 +178,8 @@ const Purchase = () => {
                     <td>{p.description || '—'}</td>
                     <td>{p.ethiopianDate || (p.date ? (typeof p.date === 'string' ? p.date : new Date(p.date).toLocaleString()) : '—')}</td>
                     <td>
-                      <button className="btn" onClick={() => startEdit(p)}>Edit</button>
-                      <button className="btn btn-danger" onClick={() => handleDelete(p._id)} style={{marginLeft:8}}>Delete</button>
+                      <button className="btn btn-sm" onClick={() => startEdit(p)}>Edit</button>
+                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(p._id)} style={{marginLeft:8}}>Delete</button>
                     </td>
                   </tr>
                 ))}
