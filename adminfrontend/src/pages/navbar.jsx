@@ -8,7 +8,7 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/dashboard" className="navbar-logo">
-            ERP_Admin
+            ERP Admin
           </Link>
           <ul className="navbar-menu">
             <li><Link to="/dashboard" className="navbar-link"><i className="fas fa-tachometer-alt"></i> Dashboard</Link></li>
