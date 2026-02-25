@@ -13,6 +13,7 @@ import OrderDetail from './pages/orderDetail';
 import Purchase from './pages/purchase';
 import Reserve from './pages/reserve';
 import PriceCalculator from './pages/priceCalculator';
+import Product from './pages/product';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/purchases" element={<Purchase />} />
         <Route path="/price-calculator" element={<PriceCalculator />} />
         <Route path="/reserves" element={<Reserve />} />
+        <Route path="/products" element={<Product />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
     </>

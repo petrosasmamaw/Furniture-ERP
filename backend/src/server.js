@@ -31,6 +31,7 @@ import balanceRoutes from './routes/balanceRoutes.js';
 import balanceReportRoutes from './routes/balanceReportRoutes.js';
 import creditRoutes from './routes/creditRoutes.js';
 import creditReportRoutes from './routes/creditReportRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 
 app.use('/api/items', itemRoutes);
 app.use('/api/material-reports', materialReportRoutes);
@@ -44,6 +45,7 @@ app.use('/api/balances', balanceRoutes);
 app.use('/api/balance-reports', balanceReportRoutes);
 app.use('/api/credits', creditRoutes);
 app.use('/api/credit-reports', creditReportRoutes);
+app.use('/api/products', productRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
