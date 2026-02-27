@@ -54,7 +54,7 @@ body::before{
 .navbar-link:hover{transform:translateX(6px);background:linear-gradient(90deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))}
 
 /* Content shifted right of sidebar */
-.page-container{margin-left:240px;padding:28px 30px}
+.page-container{margin-left:120px;padding:28px 30px}
 
 /* Cards: like polished wood tiles */
 .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:var(--radius);padding:20px;border:1px solid var(--card-border);box-shadow:0 8px 20px rgba(0,0,0,0.08);}
@@ -190,8 +190,8 @@ body::before{
 
 /* ===== Layout: content pushed right of sidebar ===== */
 .page-container {
-	margin-left: 240px;
 	padding: 28px 30px;
+	margin-left: 120px;
 }
 
 
@@ -387,10 +387,10 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
 /* ===== Product Page Styles ===== */
 .product-page {
   display: flex;
+  margin-left: 100px;
   flex-direction: column;
   gap: 40px;
   padding: 28px 30px;
-  margin-left: 240px;
   background: #f3f4f6;
   min-height: calc(100vh - 40px);
 }
@@ -398,13 +398,28 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
 .product-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: center;
-  background: var(--box-bg);
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(2,8,24,0.12);
 }
+
+/* App layout wrapper so footer sits below content and never covers navbar */
+.app-root{display:flex;flex-direction:column;min-height:100vh}
+.main-content{flex:1}
+
+/* Footer styles: elegant, subtle, always visible at bottom of app-root */
+.site-footer{background:linear-gradient(90deg,rgba(6,17,34,0.95),rgba(8,32,54,0.95));color:rgba(255,255,255,0.92);padding:28px 30px;border-top:1px solid rgba(255,255,255,0.04);margin-left:240px}
+.site-footer .footer-inner{display:flex;gap:30px;align-items:flex-start;justify-content:space-between;max-width:1300px;margin:0 auto}
+.site-footer .footer-brand h3{margin:0;font-family:'Merriweather',serif;font-size:1.1rem}
+.site-footer .footer-brand .muted{color:rgba(255,255,255,0.75);font-size:0.92rem;margin-top:6px}
+.site-footer .footer-links{display:flex;gap:28px}
+.site-footer .footer-links h4{margin:0 0 8px 0;font-size:0.95rem}
+.site-footer .footer-links ul{list-style:none;padding:0;margin:0}
+.site-footer .footer-links li{color:rgba(255,255,255,0.8);padding:6px 0;font-weight:600;font-size:0.92rem}
+.site-footer .footer-legal{align-self:flex-end;color:rgba(255,255,255,0.65);font-size:0.9rem}
+
+@media (max-width:900px){
+  .site-footer{margin-left:0;padding:20px}
+  .site-footer .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
+}
+
 
 .product-header-image {
   width: 100%;

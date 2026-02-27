@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -22,7 +23,7 @@ import { fetchReserveItems } from '../slice/reserveItemsSlice';
 import { fetchBalanceReports } from '../slice/balanceReportsSlice';
 import { fetchCreditReports } from '../slice/creditReportsSlice';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -54,15 +55,26 @@ const Dashboard = () => {
   const totalProfit = totalBalance - totalCredit;
 
   const labels = ['Items', 'Machines', 'Orders', 'Purchases', 'Material Reports', 'Reserves'];
-  const data = {
+  const overviewChartData = {
     labels,
     datasets: [
       {
         label: 'Counts',
         data: [items.length, machines.length, orders.length, purchases.length, materialReports.length, reserveItems.length],
-        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        borderColor: 'rgba(54, 162, 235, 0.9)',
+        backgroundColor: 'rgba(54, 162, 235, 0.18)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4,
       }
     ]
+  };
+
+  const lineOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: { y: { beginAtZero: true } }
   };
 
   // Helper: normalize report date (prefer ethiopianDate if present)
@@ -115,8 +127,8 @@ const Dashboard = () => {
   const balanceChartData = {
     labels: balanceDates,
     datasets: [
-      { label: 'Added', data: balanceDates.map(d => balanceByDate[d].Added), backgroundColor: 'rgba(16, 185, 129, 0.8)' },
-      { label: 'Used', data: balanceDates.map(d => balanceByDate[d].Used), backgroundColor: 'rgba(239, 68, 68, 0.8)' }
+      { label: 'Added', data: balanceDates.map(d => balanceByDate[d].Added), borderColor: 'rgba(16, 185, 129, 0.9)', backgroundColor: 'rgba(16, 185, 129, 0.12)', fill: true, tension: 0.3 },
+      { label: 'Used', data: balanceDates.map(d => balanceByDate[d].Used), borderColor: 'rgba(239, 68, 68, 0.9)', backgroundColor: 'rgba(239, 68, 68, 0.12)', fill: true, tension: 0.3 }
     ]
   };
 
@@ -134,8 +146,8 @@ const Dashboard = () => {
   const creditChartData = {
     labels: creditDates,
     datasets: [
-      { label: 'Credit Taken', data: creditDates.map(d => creditByDate[d]['Credit Taken']), backgroundColor: 'rgba(59, 130, 246, 0.8)' },
-      { label: 'Credit Paid', data: creditDates.map(d => creditByDate[d]['Credit Paid']), backgroundColor: 'rgba(234, 88, 12, 0.8)' }
+      { label: 'Credit Taken', data: creditDates.map(d => creditByDate[d]['Credit Taken']), borderColor: 'rgba(59, 130, 246, 0.9)', backgroundColor: 'rgba(59, 130, 246, 0.12)', fill: true, tension: 0.3 },
+      { label: 'Credit Paid', data: creditDates.map(d => creditByDate[d]['Credit Paid']), borderColor: 'rgba(234, 88, 12, 0.9)', backgroundColor: 'rgba(234, 88, 12, 0.12)', fill: true, tension: 0.3 }
     ]
   };
 
@@ -174,17 +186,23 @@ const Dashboard = () => {
 
       <div style={{ background: '#fff', padding: 16 }}>
         <h3>Overview</h3>
-        <Bar data={data} />
+        <div style={{ height: 300 }}>
+          <Line data={overviewChartData} options={lineOptions} />
+        </div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 20 }}>
         <div className="chart-card">
           <h4 className="chart-title">Balance: Added vs Used</h4>
-          <Bar data={balanceChartData} />
+          <div style={{ height: 260 }}>
+            <Line data={balanceChartData} options={lineOptions} />
+          </div>
         </div>
         <div className="chart-card">
           <h4 className="chart-title">Credit: Taken vs Paid</h4>
-          <Bar data={creditChartData} />
+          <div style={{ height: 260 }}>
+            <Line data={creditChartData} options={lineOptions} />
+          </div>
         </div>
       </div>
     </div>
