@@ -13,6 +13,7 @@ import balanceReportsReducer from './slice/balanceReportsSlice';
 import creditsReducer from './slice/creditsSlice';
 import creditReportsReducer from './slice/creditReportsSlice';
 import productsReducer from './slice/productsSlice';
+import authReducer from './slice/authSlice';
 
 export const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ export const store = configureStore({
     credits: creditsReducer,
     creditReports: creditReportsReducer,
     products: productsReducer,
+    auth: authReducer,
   },
 });
 
