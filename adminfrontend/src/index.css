@@ -395,6 +395,69 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
 .auth-card .form-group input { width: 100%; }
 .auth-card p { margin: 8px 0; }
 
+/* Polished auth UI */
+.auth-center { display:flex; justify-content:center; align-items:center; min-height:80vh }
+.auth-card { max-width:420px; width:100%; padding:28px; border-radius:14px; box-shadow:0 10px 30px rgba(2,8,24,0.12); background:var(--box-bg); }
+.auth-header { display:flex; flex-direction:column; align-items:center; gap:8px; margin-bottom:14px }
+.auth-avatar { width:68px; height:68px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:linear-gradient(90deg,var(--accent),var(--primary)); color:white; font-weight:700; font-size:22px }
+.auth-title { font-family:'Merriweather', serif; font-size:1.25rem; color:var(--text-box); }
+.auth-sub { font-size:0.9rem; color:var(--muted); }
+.inline-note { background:#ecfdf5; color:#065f46; padding:10px 12px; border-radius:8px; border:1px solid rgba(6,95,70,0.06); margin-top:10px }
+.password-strength { height:8px; border-radius:6px; background:rgba(0,0,0,0.06); overflow:hidden; margin-top:8px }
+.password-strength > i { display:block; height:100%; width:0%; background:linear-gradient(90deg,#f97316,#10b981); transition:width .24s ease }
+.spinner { display:inline-block; width:14px; height:14px; border:2px solid rgba(255,255,255,0.3); border-top-color:rgba(255,255,255,0.9); border-radius:50%; animation:spin .8s linear infinite; vertical-align:middle; margin-right:8px }
+@keyframes spin { to { transform:rotate(360deg) } }
+
+/* Auth hero layout (left welcome panel + right glass card) */
+.auth-center{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0}
+.auth-hero{width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:48px;align-items:center;padding:64px 24px}
+.auth-hero-left{padding:40px;color:#fff}
+.hero-title{font-family:'Merriweather',serif;font-size:46px;font-weight:800;margin:0 0 12px;color:#fff;text-shadow:0 10px 30px rgba(6,6,18,0.6)}
+.hero-sub{max-width:520px;color:rgba(255,255,255,0.9);margin-bottom:22px;line-height:1.5;font-size:1.05rem}
+.hero-cta{background:linear-gradient(90deg,#ff7a59,#ff50a1);padding:10px 18px;border-radius:999px;color:#fff;border:none;box-shadow:0 10px 30px rgba(255,90,120,0.12)}
+.hero-cta:hover{transform:translateY(-2px)}
+
+.auth-hero-right .auth-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);padding:28px;color:#fff;box-shadow:0 12px 40px rgba(3,6,18,0.6)}
+.auth-hero-right .auth-header{align-items:center}
+.auth-hero-right .auth-avatar{background:linear-gradient(90deg,#ff7a59,#ff50a1);color:white}
+.auth-hero-right .auth-title{color:#fff}
+.auth-hero-right .auth-sub{color:rgba(255,255,255,0.8)}
+.auth-hero-right .form-group input{background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.08)}
+.auth-hero-right .form-group label{color:rgba(255,255,255,0.9)}
+.auth-hero-right .btn-primary{background:linear-gradient(90deg,#ff7a59,#ff50a1);color:#fff;box-shadow:0 12px 30px rgba(255,90,120,0.14)}
+
+@media (max-width:900px){
+  .auth-center{padding-left:0}
+  .auth-hero{grid-template-columns:1fr;gap:20px;padding:36px}
+  .auth-hero-left{display:none}
+  .auth-hero-right .auth-card{max-width:420px;margin:0 auto}
+}
+
+/* ===== Auth Background (via .auth-bg div set from React import) ===== */
+.auth-center{position:relative;overflow:hidden;margin-left: 100px;}
+
+/* Background image div — rendered by React with inline backgroundImage */
+.auth-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  pointer-events:none;
+}
+/* Dark gradient overlay on top of the image */
+.auth-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(3,6,18,0.45), rgba(3,6,18,0.6));
+  pointer-events:none;
+}
+
+/* Make sure hero content sits above the background */
+.auth-hero{position:relative;z-index:1}
+
 /* ===== Product Page Styles ===== */
 .product-page {
   display: flex;
