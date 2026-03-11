@@ -26,3 +26,6 @@ Server running on port 5000
 [dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
 Server running on port 5000
 ✅ MongoDB Connected: ac-ygcbfjn-shard-00-02.r1dsnqp.mongodb.net
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting child process[39m
+[32m[nodemon] starting `node src/server.js`[39m

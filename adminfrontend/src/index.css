@@ -195,61 +195,110 @@ body::before{
 }
 
 
-/* ===== Dashboard Styles ===== */
+/* ===== Dashboard Styles — Lavender Glass Theme ===== */
+/* Page container: soft lavender background with subtle radial highlights */
+.page-container {
+  padding: 28px 30px;
+  margin-left: 120px;
+  background: linear-gradient(180deg, #f5f3fb 0%, #f7f6fb 40%, rgba(246,243,255,0.6) 100%);
+  background-image: radial-gradient(circle at 8% 12%, rgba(124,77,255,0.04), transparent 12%), linear-gradient(180deg,#f3eefb,#f8f7fc);
+  border-radius: 18px;
+  min-height: calc(100vh - 40px);
+  box-shadow: 0 30px 70px rgba(99,72,255,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Cards: frosted glass, rounded and softly elevated like the mockup */
 .card {
-	background: #ffffff;
-	padding: 18px;
-	border-radius: 10px;
-	box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
-	border: 1px solid #eef2f7;
-	text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(247,245,255,0.82));
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow:
+  0 18px 40px rgba(99,72,255,0.06),
+  0 4px 14px rgba(16,24,40,0.06),
+  inset 0 1px 0 rgba(255,255,255,0.6);
+  color: #0f172a;
+  transition: transform .18s ease, box-shadow .18s ease;
+  text-align: left;
+  position: relative;
+  overflow: visible;
 }
-.card h3 {
-	margin: 0 0 8px 0;
-	font-size: 1rem;
-	color: #111827;
+.card h3 { margin:0 0 8px 0; font-size:1rem; color:#0f172a }
+.card p { margin:0; font-size:1.25rem; font-weight:700; color:#111827 }
+
+.card:hover{ transform: translateY(-8px); box-shadow: 0 34px 80px rgba(99,72,255,0.12), 0 8px 26px rgba(16,24,40,0.08) }
+
+/* Emphasized amount card style (use class "amount" on the card) */
+.card.amount{
+  background: linear-gradient(180deg,#6f3bf7,#8c5cfb);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 30px 80px rgba(99,72,255,0.16), 0 10px 30px rgba(16,24,40,0.08);
 }
-.card p {
-	margin: 0;
-	font-size: 1.4rem;
-	font-weight: 700;
-	color: #374151;
+.card.amount .value{font-size:1.7rem;font-weight:800}
+
+/* 3D layered shadow and soft glow under cards */
+.card::after{
+  content:"";
+  position:absolute;
+  left:8px;right:-8px;top:26px;bottom:-18px;
+  background: radial-gradient(closest-side, rgba(99,72,255,0.06), transparent 40%);
+  filter: blur(18px);
+  z-index:-1;
+  border-radius:14px;
+  pointer-events:none;
 }
 
-.dashboard-overview {
-	background: #ffffff;
-	padding: 18px;
-	border-radius: 10px;
-	box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
-	border: 1px solid #eef2f7;
+/* Corner accent used in small stat cards (add .corner-accent to card) */
+.card .corner-accent{
+  position:absolute; right:14px; top:14px; width:52px; height:52px; border-radius:12px; z-index:2; pointer-events:none;
+  background: linear-gradient(135deg,#7c4cff,#3fb4ff);
+  box-shadow: 0 8px 20px rgba(99,72,255,0.12);
+  transform: rotate(8deg);
 }
 
-@media (max-width: 900px) {
-	.page-container > div[style] {
-		grid-template-columns: 1fr !important;
-	}
-	.dashboard-overview {
-		margin-top: 12px;
-	}
-}
+/* Small stat card variant */
+.stat-card{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:14px;position:relative;overflow:visible}
+.stat-card .stat-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stat-card .icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f3eefb,#eef6ff);box-shadow:0 8px 22px rgba(99,72,255,0.06)}
+.stat-card .label{font-size:0.85rem;color:#6b7280;font-weight:600}
+.stat-card .value{font-size:1.45rem;font-weight:800;color:#0f172a}
+.stat-card .sub{font-size:0.9rem;color:#6b7280}
 
-/* Chart cards */
-.chart-card {
-	background: #fff;
-	padding: 18px;
-	border-radius: 10px;
-	border: 1px solid #eef2f7;
-	box-shadow: 0 2px 14px rgba(15,23,42,0.04);
-}
-.chart-title {
-	margin: 0 0 8px 0;
-	font-size: 1rem;
-	color: #111827;
-}
+/* Delta or percent badge */
+.stat-card .delta{position:absolute;top:12px;right:12px;background:#ffffff;padding:6px 10px;border-radius:999px;font-weight:800;font-size:0.82rem;box-shadow:0 10px 24px rgba(99,72,255,0.06);border:1px solid rgba(99,72,255,0.06);color:#10b981}
+.stat-card .delta.negative{color:#ef4444}
 
-.chart-card canvas {
-	max-height: 240px;
-}
+/* Circular gauge for big amount card (use .gauge in markup) */
+.gauge{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px}
+.gauge .meter{width:120px;height:120px;border-radius:999px;background:conic-gradient(#10b981 0deg,#10b981 135deg,#e6e6f8 135deg 360deg);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(99,72,255,0.08)}
+.gauge .meter .percent{font-size:1.2rem;font-weight:800;color:#fff}
+
+/* History row style to match mockup */
+.history-row{background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(246,244,255,0.92));padding:12px 18px;border-radius:14px;box-shadow:0 12px 30px rgba(99,72,255,0.06);display:flex;align-items:center;gap:12px}
+.history-row .avatar{width:42px;height:42px;border-radius:999px;background:#fff;box-shadow:0 6px 18px rgba(99,72,255,0.06);display:flex;align-items:center;justify-content:center}
+.history-row .meta{flex:1;display:flex;align-items:center;gap:14px;color:#6b7280}
+
+/* Typography tweaks for dashboard headings */
+.page-container h3{font-family:'Merriweather',serif;font-weight:700;color:#0f172a}
+.page-container h4{font-family:'Merriweather',serif;color:#111827;margin:0}
+
+/* Utility: small action menu like 3-dot */
+.card .menu-dots{position:absolute;right:14px;bottom:14px;width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.7);display:flex;align-items:center;justify-content:center;color:#374151;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+
+/* Responsive tweaks */
+@media (max-width:900px){.stat-card{padding:14px}.gauge .meter{width:92px;height:92px}}
+
+.dashboard-overview{background:transparent;padding:6px;border-radius:14px}
+
+/* Chart cards use softer glass tone */
+.chart-card{background:linear-gradient(180deg, rgba(255,255,255,0.86), rgba(246,244,255,0.86));border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 18px 48px rgba(99,72,255,0.06)}
+.chart-title{margin:0 0 8px 0;font-size:1rem;color:#0f172a}
+.chart-card canvas{max-height:240px}
+
+@media (max-width:900px){.page-container > div[style]{grid-template-columns:1fr !important}.dashboard-overview{margin-top:12px}}
 
 
 /* Price Calculator styles */
@@ -333,12 +382,8 @@ body::before{background-image: radial-gradient(circle at 18% 10%, rgba(57,163,25
 /* ensure text contrast in boxes */
 .card p, .card h3, .chart-title, .card, .dashboard-overview p { color:var(--text-box) }
 
-/* Page background override: make main content area light grey (navbar excluded) */
-.page-container{
-	background: #f3f4f6 !important;
-	color: var(--text-box);
-	min-height: calc(100vh - 40px);
-}
+/* Page background override removed — dashboard theme provides background */
+.page-container{ color: var(--text-box); min-height: calc(100vh - 40px); }
 
 /* Form label layout: stacked labels above inputs for all pages */
 .form-group{
