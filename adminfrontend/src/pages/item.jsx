@@ -101,17 +101,10 @@ const Item = () => {
   return (
     <div className="page-container">
       <div className="balance-page">
-        <div className="balance-header" style={{ display: 'flex', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <h1>Items</h1>
-            <p className="workers-col" style={{ marginTop: 6 }}>Manage inventory and material movements</p>
-          </div>
+        <div className="balance-header">
+          <h1>Items</h1>
           <div className="current-balance">
-            <div className="card amount" style={{ minWidth: 180, textAlign: 'right', padding: 14 }}>
-              <div className="corner-accent" />
-              <h4 style={{ margin: 0, fontSize: '0.9rem' }}>Total Items</h4>
-              <p className="value" style={{ margin: 0, fontSize: '1.4rem' }}>{items.length}</p>
-            </div>
+            <h2>Total Items: {items.length}</h2>
           </div>
         </div>
         <div className="balance-reports">
@@ -137,7 +130,7 @@ const Item = () => {
                     <td>{item.price?.toFixed(2)} Birr</td>
                     <td>{item.description}</td>
                     <td>
-                      <button className="btn btn-sm btn-primary" onClick={() => startEdit(item)}>Edit</button>
+                      <button className="btn" onClick={() => startEdit(item)}>Edit</button>
                     </td>
                   </tr>
                 ))}
