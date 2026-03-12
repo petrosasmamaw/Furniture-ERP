@@ -99,10 +99,17 @@ const Credit = () => {
   return (
     <div className="page-container">
       <div className="balance-page">
-        <div className="balance-header">
-          <h1>Credit Management</h1>
+        <div className="balance-header" style={{ display: 'flex', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <h1>Credit Management</h1>
+            <p className="workers-col" style={{ marginTop: 6 }}>Manage credit inflows and outflows</p>
+          </div>
           <div className="current-balance">
-            <h2>Current Credit: {currentCredit.toFixed(2)} Birr</h2>
+            <div className="card amount" style={{ minWidth: 220, textAlign: 'right', padding: 16 }}>
+              <div className="corner-accent" />
+              <h4 style={{ margin: 0, fontSize: '0.95rem' }}>Current Credit</h4>
+              <p className="value" style={{ margin: 0, fontSize: '1.6rem' }}>{currentCredit.toFixed(2)} Birr</p>
+            </div>
           </div>
         </div>
 
@@ -124,7 +131,7 @@ const Credit = () => {
               </div>
               <div className="form-group">
                 <label>Remaining Credit after transaction:</label>
-                <span>${(currentCredit + parseFloat(creditInForm.amount || 0)).toFixed(2)}</span>
+                <span className="value">{(currentCredit + parseFloat(creditInForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
               <button type="submit" className="btn btn-primary">Add Credit In</button>
             </form>
@@ -147,7 +154,7 @@ const Credit = () => {
               </div>
               <div className="form-group">
                 <label>Remaining Credit after transaction:</label>
-                <span>${(currentCredit - parseFloat(creditOutForm.amount || 0)).toFixed(2)}</span>
+                <span className="value">{(currentCredit - parseFloat(creditOutForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
               {outError && <div style={{ color: 'red', marginBottom: 8 }}>{outError}</div>}
               <button type="submit" className="btn btn-danger">Add Credit Out</button>
