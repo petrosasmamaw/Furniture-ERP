@@ -398,6 +398,31 @@ body::before{background-image: radial-gradient(circle at 18% 10%, rgba(57,163,25
 /* tables inside pages should use dark text for readability */
 .reports-table th, .reports-table td{border-bottom:1px solid var(--border); color:var(--text-box)}
 .reports-table th{background: rgba(245,247,250,0.9); color:var(--text-box)}
+
+/* ===== Two-Color Theme (global override) ===== */
+/* Pick two colors below — primary (left) and secondary (right) — used across the UI */
+:root{
+  --primary-color: #7c4cff; /* purple */
+  --secondary-color: #3fb4ff; /* cyan */
+  --theme-gradient: linear-gradient(90deg,var(--primary-color),var(--secondary-color));
+  --theme-solid-primary: var(--primary-color);
+  --theme-solid-secondary: var(--secondary-color);
+}
+
+/* apply two-color accents globally */
+.top-color-bar{background:var(--theme-gradient)}
+.btn-primary{background:var(--theme-gradient);color:#fff;box-shadow:0 12px 32px rgba(124,76,255,0.12)}
+.card.amount{background:linear-gradient(180deg,var(--theme-solid-primary),var(--theme-solid-secondary));color:#fff}
+.card .corner-accent{background:var(--theme-gradient);box-shadow:0 10px 26px rgba(63,180,255,0.10)}
+.navbar{background:linear-gradient(180deg, color-mix(in srgb, var(--theme-solid-primary) 20%, #021428), var(--theme-solid-secondary));}
+.navbar-logo span{background:var(--theme-gradient);color:#ffffff}
+
+/* subtle icon background using the two colors */
+.stat-card .icon{background:linear-gradient(135deg, rgba(124,76,255,0.06), rgba(63,180,255,0.06));box-shadow:0 8px 22px rgba(99,72,255,0.04)}
+
+/* utility class to flip theme direction if needed */
+.theme-reverse{--theme-gradient: linear-gradient(90deg,var(--secondary-color),var(--primary-color));}
+
 .reports-table a{color:var(--primary); font-weight:700}
 .reports-table a:hover{text-decoration:underline;color:var(--primary)}
 .reports-table tbody tr:hover{background: rgba(240,244,250,0.9)}

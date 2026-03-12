@@ -153,38 +153,45 @@ const Dashboard = () => {
 
   return (
     <div className="page-container">
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 20 }}>
-        <div className="card">
+      <div className="dashboard-overview" style={{ gap: 12, marginBottom: 20 }}>
+        <div className="stat-card card">
+          <div className="corner-accent" />
           <h3>Items</h3>
-          <p>{items.length}</p>
+          <p className="value">{items.length}</p>
         </div>
-        <div className="card">
+        <div className="stat-card card">
+          <div className="corner-accent" />
           <h3>Machines</h3>
-          <p>{machines.length}</p>
+          <p className="value">{machines.length}</p>
         </div>
-        <div className="card">
+        <div className="stat-card card">
+          <div className="corner-accent" />
           <h3>Orders</h3>
-          <p>{orders.length}</p>
+          <p className="value">{orders.length}</p>
         </div>
-        <div className="card">
+        <div className="stat-card card">
+          <div className="corner-accent" />
           <h3>Purchases</h3>
-          <p>{purchases.length}</p>
+          <p className="value">{purchases.length}</p>
         </div>
-        <div className="card">
+        <div className="card amount">
+          <div className="corner-accent" />
           <h3>Total Balance</h3>
-          <p>${totalBalance.toFixed(2)}</p>
+          <p className="value">${totalBalance.toFixed(2)}</p>
         </div>
-        <div className="card">
+        <div className="stat-card card">
+          <div className="corner-accent" />
           <h3>Total Credit</h3>
-          <p>${totalCredit.toFixed(2)}</p>
+          <p className="value">${totalCredit.toFixed(2)}</p>
         </div>
-        <div className="card">
+        <div className="stat-card card">
+          <div className="corner-accent" />
           <h3>Profit</h3>
-          <p style={{ color: totalProfit >= 0 ? '#10B981' : '#EF4444' }}>${totalProfit.toFixed(2)}</p>
+          <p className={totalProfit >= 0 ? 'type-added value' : 'type-used value'}>${totalProfit.toFixed(2)}</p>
         </div>
       </div>
 
-      <div style={{ background: '#fff', padding: 16 }}>
+      <div className="chart-card" style={{ marginTop: 12 }}>
         <h3>Overview</h3>
         <div style={{ height: 300 }}>
           <Line data={overviewChartData} options={lineOptions} />
