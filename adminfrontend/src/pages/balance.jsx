@@ -108,10 +108,17 @@ const Balance = () => {
   return (
     <div className="page-container">
       <div className="balance-page">
-        <div className="balance-header">
-          <h1>Balance Management</h1>
+        <div className="balance-header" style={{ display: 'flex', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <h1>Balance Management</h1>
+            <p className="workers-col" style={{ marginTop: 6 }}>Track cash inflows and outflows</p>
+          </div>
           <div className="current-balance">
-            <h2>Current Balance: {currentBalance.toFixed(2)} Birr</h2>
+            <div className="card amount" style={{ minWidth: 220, textAlign: 'right', padding: 16 }}>
+              <div className="corner-accent" />
+              <h4 style={{ margin: 0, fontSize: '0.95rem' }}>Current Balance</h4>
+              <p className="value" style={{ margin: 0, fontSize: '1.6rem' }}>{currentBalance.toFixed(2)} Birr</p>
+            </div>
           </div>
         </div>
 
@@ -133,7 +140,7 @@ const Balance = () => {
               </div>
               <div className="form-group">
                 <label>Remaining Balance after transaction:</label>
-                <span>${(currentBalance + parseFloat(cashInForm.amount || 0)).toFixed(2)}</span>
+                <span className="value">{(currentBalance + parseFloat(cashInForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
               <button type="submit" className="btn btn-primary">Add Cash In</button>
             </form>
@@ -156,7 +163,7 @@ const Balance = () => {
               </div>
               <div className="form-group">
                 <label>Remaining Balance after transaction:</label>
-                <span>${(currentBalance - parseFloat(cashOutForm.amount || 0)).toFixed(2)}</span>
+                <span className="value">{(currentBalance - parseFloat(cashOutForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
               <button type="submit" className="btn btn-danger">Add Cash Out</button>
             </form>
