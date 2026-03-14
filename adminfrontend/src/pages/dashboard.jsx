@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Line } from 'react-chartjs-2';
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
   Tooltip,
   Legend,
-} from 'chart.js';
+  CartesianGrid,
+} from 'recharts';
 
 import { fetchItems } from '../slice/itemsSlice';
 import { fetchMachines } from '../slice/machinesSlice';
@@ -23,7 +22,7 @@ import { fetchReserveItems } from '../slice/reserveItemsSlice';
 import { fetchBalanceReports } from '../slice/balanceReportsSlice';
 import { fetchCreditReports } from '../slice/creditReportsSlice';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+// Using Recharts now; removed Chart.js registration
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -55,27 +54,7 @@ const Dashboard = () => {
   const totalProfit = totalBalance - totalCredit;
 
   const labels = ['Items', 'Machines', 'Orders', 'Purchases', 'Material Reports', 'Reserves'];
-  const overviewChartData = {
-    labels,
-    datasets: [
-      {
-        label: 'Counts',
-        data: [items.length, machines.length, orders.length, purchases.length, materialReports.length, reserveItems.length],
-        borderColor: 'rgba(54, 162, 235, 0.9)',
-        backgroundColor: 'rgba(54, 162, 235, 0.18)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 4,
-      }
-    ]
-  };
-
-  const lineOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { position: 'top' } },
-    scales: { y: { beginAtZero: true } }
-  };
+  const overviewData = labels.map((name, idx) => ({ name, value: [items.length, machines.length, orders.length, purchases.length, materialReports.length, reserveItems.length][idx] || 0 }));
 
   // Helper: normalize report date (prefer ethiopianDate if present)
   const normalizeDate = (r) => {
@@ -124,13 +103,7 @@ const Dashboard = () => {
   }
 
   const balanceDates = Object.keys(balanceByDate).sort((a,b)=> a.localeCompare(b));
-  const balanceChartData = {
-    labels: balanceDates,
-    datasets: [
-      { label: 'Added', data: balanceDates.map(d => balanceByDate[d].Added), borderColor: 'rgba(16, 185, 129, 0.9)', backgroundColor: 'rgba(16, 185, 129, 0.12)', fill: true, tension: 0.3 },
-      { label: 'Used', data: balanceDates.map(d => balanceByDate[d].Used), borderColor: 'rgba(239, 68, 68, 0.9)', backgroundColor: 'rgba(239, 68, 68, 0.12)', fill: true, tension: 0.3 }
-    ]
-  };
+  const balanceChartData = balanceDates.map(d => ({ date: d, Added: balanceByDate[d].Added, Used: balanceByDate[d].Used }));
 
   // Build credit chart (Taken vs Paid)
   const creditByDate = {};
@@ -143,13 +116,7 @@ const Dashboard = () => {
     if (r.type === 'Credit Paid') creditByDate[d]['Credit Paid'] += (r.amount || 0);
   });
   const creditDates = Object.keys(creditByDate).sort((a,b)=> a.localeCompare(b));
-  const creditChartData = {
-    labels: creditDates,
-    datasets: [
-      { label: 'Credit Taken', data: creditDates.map(d => creditByDate[d]['Credit Taken']), borderColor: 'rgba(59, 130, 246, 0.9)', backgroundColor: 'rgba(59, 130, 246, 0.12)', fill: true, tension: 0.3 },
-      { label: 'Credit Paid', data: creditDates.map(d => creditByDate[d]['Credit Paid']), borderColor: 'rgba(234, 88, 12, 0.9)', backgroundColor: 'rgba(234, 88, 12, 0.12)', fill: true, tension: 0.3 }
-    ]
-  };
+  const creditChartData = creditDates.map(d => ({ date: d, Taken: creditByDate[d]['Credit Taken'], Paid: creditByDate[d]['Credit Paid'] }));
 
   return (
     <div className="page-container">
@@ -194,7 +161,21 @@ const Dashboard = () => {
       <div className="chart-card" style={{ marginTop: 12 }}>
         <h3>Overview</h3>
         <div style={{ height: 300 }}>
-          <Line data={overviewChartData} options={lineOptions} />
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={overviewData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="gOverview" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#7c3aed" stopOpacity={0.9}/>
+                  <stop offset="95%" stopColor="#7c3aed" stopOpacity={0.1}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Area type="monotone" dataKey="value" stroke="#7c3aed" fillOpacity={1} fill="url(#gOverview)" isAnimationActive={true} animationDuration={900} />
+            </AreaChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
@@ -202,13 +183,53 @@ const Dashboard = () => {
         <div className="chart-card">
           <h4 className="chart-title">Balance: Added vs Used</h4>
           <div style={{ height: 260 }}>
-            <Line data={balanceChartData} options={lineOptions} />
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={balanceChartData} margin={{ top: 6, right: 12, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="gAdded" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.9}/>
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.08}/>
+                  </linearGradient>
+                  <linearGradient id="gUsed" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.9}/>
+                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0.08}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
+                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Area type="monotone" dataKey="Added" stroke="#10b981" fill="url(#gAdded)" fillOpacity={1} isAnimationActive={true} animationDuration={900} />
+                <Area type="monotone" dataKey="Used" stroke="#ef4444" fill="url(#gUsed)" fillOpacity={1} isAnimationActive={true} animationDuration={900} />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </div>
         <div className="chart-card">
           <h4 className="chart-title">Credit: Taken vs Paid</h4>
           <div style={{ height: 260 }}>
-            <Line data={creditChartData} options={lineOptions} />
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={creditChartData} margin={{ top: 6, right: 12, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="gTaken" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.08}/>
+                  </linearGradient>
+                  <linearGradient id="gPaid" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.9}/>
+                    <stop offset="95%" stopColor="#f97316" stopOpacity={0.08}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
+                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Area type="monotone" dataKey="Taken" stroke="#3b82f6" fill="url(#gTaken)" fillOpacity={1} isAnimationActive={true} animationDuration={900} />
+                <Area type="monotone" dataKey="Paid" stroke="#f97316" fill="url(#gPaid)" fillOpacity={1} isAnimationActive={true} animationDuration={900} />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
