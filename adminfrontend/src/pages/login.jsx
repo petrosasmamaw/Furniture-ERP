@@ -47,11 +47,11 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required aria-label="email" />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required aria-label="email" autoComplete="email" />
               </div>
               <div className="form-group">
                 <label>Password</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required aria-label="password" />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required aria-label="password" autoComplete="current-password" />
               </div>
               {error && <p className="error-text">{error}</p>}
               {message && <p className="error-text">{message}</p>}

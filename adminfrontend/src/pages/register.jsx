@@ -68,16 +68,16 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required aria-label="email" />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required aria-label="email" autoComplete="email" />
               </div>
               <div className="form-group">
                 <label>Password</label>
-                <input type="password" value={password} onChange={(e) => { setPassword(e.target.value); calcStrength(e.target.value); }} required aria-label="password" />
+                <input type="password" value={password} onChange={(e) => { setPassword(e.target.value); calcStrength(e.target.value); }} required aria-label="password" autoComplete="new-password" />
                 <div className="password-strength"><i style={{ width: pwStrength + '%' }} /></div>
               </div>
               <div className="form-group">
                 <label>Confirm password</label>
-                <input type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} required aria-label="confirm-password" />
+                <input type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} required aria-label="confirm-password" autoComplete="new-password" />
               </div>
               {error && <p className="error-text">{error}</p>}
               {infoMessage && <p className="error-text">{infoMessage}</p>}
