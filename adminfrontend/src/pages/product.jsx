@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { fetchProducts, createProduct, deleteProduct } from '../slice/productsSlice';
-import { motion } from 'framer-motion';
+// framer-motion removed
 
 export default function Product() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { products, status } = useSelector((state) => state.products);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
@@ -14,6 +16,7 @@ export default function Product() {
     rating: 0,
   });
   const [images, setImages] = useState([]);
+  const productsRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -55,21 +58,9 @@ export default function Product() {
     }
   };
 
-  const headerRef = useRef(null);
-  const productsRef = useRef(null);
-
-  const scrollTo = (ref) => {
-    if (ref?.current) ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <div className="product-page">
-      <div className="product-scroll-nav" style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <button className="btn" onClick={() => scrollTo(headerRef)}>Top</button>
-        <button className="btn" onClick={() => scrollTo(productsRef)}>Products</button>
-      </div>
-      {/* Header Section */}
-      <motion.div className="product-header" ref={headerRef} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <div className="product-header">
         <img
           src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1000"
           alt="Furniture Products"
@@ -84,7 +75,7 @@ export default function Product() {
             From modern minimalist designs to classic timeless pieces, we offer something for every taste and space. Transform your home with our exquisite furniture collection today.
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* Create Product Button */}
       <div className="product-action-bar">
@@ -183,7 +174,7 @@ export default function Product() {
         ) : (
           <div className="products-grid">
             {products.map((product) => (
-              <motion.div key={product._id} className="product-card" whileHover={{ scale: 1.02 }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+              <div key={product._id} className="product-card">
                 {/* Product Images */}
                 {product.images && product.images.length > 0 && (
                   <div className="product-images-carousel">
@@ -209,8 +200,15 @@ export default function Product() {
                   >
                     Delete
                   </button>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    style={{ marginLeft: 8 }}
+                    onClick={() => navigate('/recommendation', { state: { product } })}
+                  >
+                    Analyze
+                  </button>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         )}

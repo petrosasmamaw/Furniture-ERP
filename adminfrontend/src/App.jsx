@@ -16,6 +16,7 @@ import Purchase from './pages/purchase';
 import Reserve from './pages/reserve';
 import PriceCalculator from './pages/priceCalculator';
 import Product from './pages/product';
+import Recommendation from './pages/recommendation';
 import Login from './pages/login';
 import Register from './pages/register';
 import ResetPassword from './pages/resetPassword';
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/price-calculator" element={<PriceCalculator />} />
           <Route path="/reserves" element={<Reserve />} />
               <Route path="/products" element={<Product />} />
+              <Route path="/recommendation" element={<Recommendation />} />
               <Route path="/" element={<Dashboard />} />
             </>
           ) : (
