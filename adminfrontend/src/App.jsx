@@ -33,7 +33,7 @@ const App = () => {
       <Navbar />
       <main className="page-container main-content">
         <Routes>
-          {session ? (
+          {session ? (    
             <>
               <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/items" element={<Item />} />
