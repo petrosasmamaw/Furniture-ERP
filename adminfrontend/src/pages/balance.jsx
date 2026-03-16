@@ -104,7 +104,7 @@ const Balance = () => {
       console.error('Error creating cash out report:', error);
     }
   };
-12
+123
   return (
     <div className="page-container">
       <div className="balance-page">
