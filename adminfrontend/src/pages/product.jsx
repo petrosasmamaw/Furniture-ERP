@@ -67,7 +67,10 @@ export default function Product() {
           className="product-header-image"
         />
         <div className="product-header-content">
-          <h1>Discover Our Furniture Collection</h1>
+          <h1>
+            <span className="product-title-icon" aria-hidden="true"><i className="fas fa-couch" /></span>
+            Discover Our Furniture Collection
+          </h1>
           <p>
             Explore our carefully curated selection of premium furniture pieces that combine elegance, comfort, and durability. Each product is handpicked to ensure the highest quality and style.
           </p>
@@ -83,6 +86,7 @@ export default function Product() {
           className="btn btn-primary"
           onClick={() => setShowForm(!showForm)}
         >
+          <i className={`fas ${showForm ? 'fa-times' : 'fa-plus-circle'}`} aria-hidden="true" style={{ marginRight: 8 }} />
           {showForm ? 'Close' : 'Create Product'}
         </button>
       </div>
@@ -91,10 +95,13 @@ export default function Product() {
       {showForm && (
         <div className="product-form-container">
           <form onSubmit={handleSubmit} className="product-form">
-            <h3>Add New Product</h3>
+            <h3>
+              <span className="section-icon" aria-hidden="true"><i className="fas fa-box-open" /></span>
+              Add New Product
+            </h3>
 
             <div className="form-group">
-              <label>Product Title</label>
+              <label><i className="fas fa-tag" aria-hidden="true" /> Product Title</label>
               <input
                 type="text"
                 name="title"
@@ -106,7 +113,7 @@ export default function Product() {
             </div>
 
             <div className="form-group">
-              <label>Description</label>
+              <label><i className="fas fa-align-left" aria-hidden="true" /> Description</label>
               <textarea
                 name="description"
                 value={formData.description}
@@ -119,7 +126,7 @@ export default function Product() {
 
             <div className="form-row">
               <div className="form-group" style={{ flex: 1 }}>
-                <label>Price</label>
+                <label><i className="fas fa-dollar-sign" aria-hidden="true" /> Price</label>
                 <input
                   type="number"
                   name="price"
@@ -132,7 +139,7 @@ export default function Product() {
               </div>
 
               <div className="form-group" style={{ flex: 1 }}>
-                <label>Rating (0-5)</label>
+                <label><i className="fas fa-star" aria-hidden="true" /> Rating (0-5)</label>
                 <input
                   type="number"
                   name="rating"
@@ -146,7 +153,7 @@ export default function Product() {
             </div>
 
             <div className="form-group">
-              <label>Upload Images (1-3)</label>
+              <label><i className="fas fa-images" aria-hidden="true" /> Upload Images (1-3)</label>
               <input
                 type="file"
                 multiple
@@ -158,6 +165,7 @@ export default function Product() {
             </div>
 
             <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+              <i className="fas fa-check-circle" aria-hidden="true" style={{ marginRight: 8 }} />
               Create Product
             </button>
           </form>
@@ -166,7 +174,10 @@ export default function Product() {
 
       {/* Products List */}
       <div className="products-section" ref={productsRef}>
-        <h2>Our Products</h2>
+        <h2>
+          <span className="section-icon" aria-hidden="true"><i className="fas fa-store" /></span>
+          Our Products
+        </h2>
         {status === 'loading' ? (
           <p className="loading-text">Loading products...</p>
         ) : products.length === 0 ? (
@@ -186,18 +197,22 @@ export default function Product() {
 
                 {/* Product Info */}
                 <div className="product-info">
-                  <h3>{product.title}</h3>
+                  <h3>
+                    <span className="product-card-title-icon" aria-hidden="true"><i className="fas fa-cube" /></span>
+                    {product.title}
+                  </h3>
                   <p className="product-description">{product.description}</p>
 
                   <div className="product-meta">
-                    <span className="product-price">${parseFloat(product.price).toFixed(2)}</span>
-                    <span className="product-rating">⭐ {product.rating}/5</span>
+                    <span className="product-price"><i className="fas fa-coins" aria-hidden="true" /> ${parseFloat(product.price).toFixed(2)}</span>
+                    <span className="product-rating"><i className="fas fa-star" aria-hidden="true" /> {product.rating}/5</span>
                   </div>
 
                   <button
                     className="btn btn-danger btn-sm"
                     onClick={() => handleDelete(product._id)}
                   >
+                    <i className="fas fa-trash" aria-hidden="true" style={{ marginRight: 6 }} />
                     Delete
                   </button>
                   <button
@@ -205,6 +220,7 @@ export default function Product() {
                     style={{ marginLeft: 8 }}
                     onClick={() => navigate('/recommendation', { state: { product } })}
                   >
+                    <i className="fas fa-chart-pie" aria-hidden="true" style={{ marginRight: 6 }} />
                     Analyze
                   </button>
                 </div>

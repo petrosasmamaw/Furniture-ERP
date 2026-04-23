@@ -684,6 +684,22 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
   font-weight: 700;
   color: var(--text-box);
   margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-title-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(124,76,255,0.12), rgba(63,180,255,0.14));
+  color: #3749c8;
+  border: 1px solid rgba(124,76,255,0.18);
+  font-size: 1rem;
 }
 
 .product-header-content p {
@@ -720,6 +736,28 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
   font-size: 1.6rem;
   color: var(--text-box);
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(124,76,255,0.12), rgba(63,180,255,0.14));
+  color: #3749c8;
+  border: 1px solid rgba(124,76,255,0.16);
+  font-size: 0.85rem;
+}
+
+.product-form label i {
+  width: 16px;
+  color: #3749c8;
+  margin-right: 6px;
 }
 
 .form-row {
@@ -744,6 +782,10 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
   color: var(--text-box);
   margin-bottom: 30px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .loading-text, .no-products {
@@ -804,6 +846,22 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
   color: var(--text-box);
   margin-bottom: 8px;
   word-break: break-word;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-card-title-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124,76,255,0.1);
+  color: #3749c8;
+  font-size: 0.75rem;
+  flex-shrink: 0;
 }
 
 .product-description {
@@ -812,6 +870,7 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
   line-height: 1.5;
   margin-bottom: 14px;
   opacity: 0.8;
+  line-clamp: 2;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -832,6 +891,12 @@ input:focus, select:focus, textarea:focus, .price-input:focus {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--primary);
+}
+
+.product-price i,
+.product-rating i {
+  margin-right: 6px;
+  color: #3749c8;
 }
 
 .product-rating {
