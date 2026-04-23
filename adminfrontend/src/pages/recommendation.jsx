@@ -94,8 +94,9 @@ const Recommendation = () => {
   if (!product) {
     return (
       <div style={{ padding: "40px", textAlign: "center" }}>
-        <h2>No product selected</h2>
+        <h2 className="title-with-icon" style={{ justifyContent: "center" }}><span className="section-icon" aria-hidden="true"><i className="fas fa-triangle-exclamation" /></span>No product selected</h2>
         <button className="btn btn-primary" onClick={() => navigate("/products")}>
+          <i className="fas fa-arrow-left" />
           Back to Products
         </button>
       </div>
@@ -109,13 +110,14 @@ const Recommendation = () => {
         onClick={() => navigate("/products")}
         style={{ marginBottom: "20px" }}
       >
+        <i className="fas fa-arrow-left" aria-hidden="true" />
         ← Back
       </button>
 
-      <h1 style={{ borderBottom: "2px solid #eee", paddingBottom: "10px" }}>AI Recommendation</h1>
+      <h1 className="title-with-icon" style={{ borderBottom: "2px solid #eee", paddingBottom: "10px" }}><span className="section-icon" aria-hidden="true"><i className="fas fa-robot" /></span>AI Recommendation</h1>
 
       <div style={{ background: "#fcfcfc", padding: "20px", borderRadius: "10px", margin: "20px 0" }}>
-        <h3>{product.title}</h3>
+        <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-cube" /></span>{product.title}</h3>
         <p><strong>Price:</strong> ${product.price}</p>
         <p><strong>Rating:</strong> ⭐ {product.rating?.rate || product.rating}</p>
         <p><strong>Description:</strong> {product.description}</p>

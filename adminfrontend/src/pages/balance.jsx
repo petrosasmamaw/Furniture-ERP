@@ -110,13 +110,13 @@ const Balance = () => {
       <div className="balance-page">
         <div className="balance-header" style={{ display: 'flex', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <h1>Balance Management</h1>
+            <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-wallet" /></span>Balance Management</h1>
             <p className="workers-col" style={{ marginTop: 6 }}>Track cash inflows and outflows</p>
           </div>
           <div className="current-balance">
             <div className="card amount" style={{ minWidth: 220, textAlign: 'right', padding: 16 }}>
               <div className="corner-accent" />
-              <h4 style={{ margin: 0, fontSize: '0.95rem' }}>Current Balance</h4>
+              <h4 style={{ margin: 0, fontSize: '0.95rem' }}><i className="fas fa-scale-balanced inline-icon" />Current Balance</h4>
               <p className="value" style={{ margin: 0, fontSize: '1.6rem' }}>{currentBalance.toFixed(2)} Birr</p>
             </div>
           </div>
@@ -124,7 +124,7 @@ const Balance = () => {
 
         <div className="balance-forms">
           <div className="form-section">
-            <h3>Cash In</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-arrow-trend-up" /></span>Cash In</h3>
             <form onSubmit={handleCashInSubmit} className="balance-form">
               <div className="form-group">
                 <label>Payment ID:</label>
@@ -142,12 +142,12 @@ const Balance = () => {
                 <label>Remaining Balance after transaction:</label>
                 <span className="value">{(currentBalance + parseFloat(cashInForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
-              <button type="submit" className="btn btn-primary">Add Cash In</button>
+              <button type="submit" className="btn btn-primary"><i className="fas fa-plus-circle" />Add Cash In</button>
             </form>
           </div>
 
           <div className="form-section">
-            <h3>Cash Out</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-arrow-trend-down" /></span>Cash Out</h3>
             <form onSubmit={handleCashOutSubmit} className="balance-form">
               <div className="form-group">
                 <label>Payment ID:</label>
@@ -165,13 +165,13 @@ const Balance = () => {
                 <label>Remaining Balance after transaction:</label>
                 <span className="value">{(currentBalance - parseFloat(cashOutForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
-              <button type="submit" className="btn btn-danger">Add Cash Out</button>
+              <button type="submit" className="btn btn-danger"><i className="fas fa-minus-circle" />Add Cash Out</button>
             </form>
           </div>
         </div>
 
         <div className="balance-reports">
-          <h3>Balance Reports</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-file-lines" /></span>Balance Reports</h3>
           {reportStatus === 'loading' ? (
             <p>Loading reports...</p>
           ) : (

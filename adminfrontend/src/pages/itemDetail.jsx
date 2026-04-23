@@ -31,17 +31,17 @@ const ItemDetail = () => {
       <div className="balance-page">
         <div className="balance-header">
           <div>
-            <h1>{name}</h1>
+            <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-box" /></span>{name}</h1>
             <p style={{opacity: 0.9}}>ID: {itemId}</p>
             <p style={{opacity: 0.85}}>Description: {description || '—'}</p>
           </div>
           <div className="current-balance">
-            <h2>Qty: {quantity} — {price?.toFixed(2)} Birr</h2>
+            <h2><i className="fas fa-scale-balanced inline-icon" />Qty: {quantity} — {price?.toFixed(2)} Birr</h2>
           </div>
         </div>
 
         <div className="balance-reports">
-          <h3>Material Reports for {name}</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-file-waveform" /></span>Material Reports for {name}</h3>
           {reportsStatus === 'loading' ? (
             <p>Loading reports...</p>
           ) : (

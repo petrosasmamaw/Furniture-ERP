@@ -61,14 +61,14 @@ const OrderDetail = () => {
       <div className="balance-page">
         <div className="balance-header">
           <div>
-            <h1>{currentOrder.orderName}</h1>
+            <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-clipboard-list" /></span>{currentOrder.orderName}</h1>
             <p style={{opacity:0.9}}>Start: {currentOrder.startDate ? new Date(currentOrder.startDate).toLocaleDateString() : '—'}</p>
             <p style={{opacity:0.9}}>Finish: {currentOrder.finishDate ? new Date(currentOrder.finishDate).toLocaleDateString() : '—'}</p>
           </div>
           <div className="current-balance">
-            <h2>Progress reports: {(orderReports || []).length}</h2>
+            <h2><i className="fas fa-chart-line inline-icon" />Progress reports: {(orderReports || []).length}</h2>
             <div style={{marginTop:8}}>
-              <button className="btn btn-primary" onClick={() => navigate(`/reserves?orderName=${encodeURIComponent(currentOrder.orderName)}`)}>Create Reserve</button>
+              <button className="btn btn-primary" onClick={() => navigate(`/reserves?orderName=${encodeURIComponent(currentOrder.orderName)}`)}><i className="fas fa-box-archive" />Create Reserve</button>
             </div>
             <div style={{marginTop:8}}>
               <small>Reserves for this order: {(reserveItems || []).length}</small>
@@ -78,7 +78,7 @@ const OrderDetail = () => {
 
         <div className="balance-forms">
           <div className="form-section">
-            <h3>Create Order Report</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-square-plus" /></span>Create Order Report</h3>
             <form className="balance-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Items Used (format: name:qty, name2:qty)</label>
@@ -93,13 +93,13 @@ const OrderDetail = () => {
                 <input type="text" value={form.description} onChange={(e) => setForm({...form, description: e.target.value})} />
               </div>
               <div style={{display:'flex', gap:12}}>
-                <button type="submit" className="btn btn-primary">Create Report</button>
+                <button type="submit" className="btn btn-primary"><i className="fas fa-check-circle" />Create Report</button>
               </div>
             </form>
           </div>
 
           <div className="form-section">
-            <h3>Order Reports</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-file-lines" /></span>Order Reports</h3>
             <div className="reports-table">
               <table>
                 <thead>

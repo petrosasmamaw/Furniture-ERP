@@ -339,6 +339,12 @@ body::before{
 .chart-icon i{font-size:14px;color:#3749c8}
 .chart-card canvas{max-height:240px}
 
+/* Shared page icon helpers */
+.title-with-icon{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.title-with-icon .section-icon{flex-shrink:0}
+.inline-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;color:#3b82f6;margin-right:6px}
+.btn i{margin-right:6px}
+
 @media (max-width:900px){.page-container > div[style]{grid-template-columns:1fr !important}.dashboard-overview{margin-top:12px}}
 
 

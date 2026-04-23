@@ -97,15 +97,15 @@ const Reserve = () => {
   return (
     <div className="reserve-page page-container">
       <div className="reserve-header balance-header">
-        <h1>Reserve Items</h1>
+        <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-box-archive" /></span>Reserve Items</h1>
         <div className="current-balance">
-          <h2>{reserveItems.length} items</h2>
+          <h2><i className="fas fa-boxes-stacked inline-icon" />{reserveItems.length} items</h2>
         </div>
       </div>
 
       <div className="balance-forms">
         <section className="form-section">
-          <h3>{editingId ? 'Edit Reserve Item' : 'Add Reserve Item'}</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className={`fas ${editingId ? 'fa-pen-to-square' : 'fa-square-plus'}`} /></span>{editingId ? 'Edit Reserve Item' : 'Add Reserve Item'}</h3>
           <form className="balance-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Order</label>
@@ -131,14 +131,14 @@ const Reserve = () => {
             </div>
             {/* description is auto-generated from selected item and orderName */}
             <div style={{ display: 'flex', gap: 10 }}>
-              <button type="submit" className="btn btn-primary">{editingId ? 'Update' : 'Create'}</button>
-              <button type="button" className="btn" onClick={resetForm}>Reset</button>
+              <button type="submit" className="btn btn-primary"><i className={`fas ${editingId ? 'fa-floppy-disk' : 'fa-plus-circle'}`} />{editingId ? 'Update' : 'Create'}</button>
+              <button type="button" className="btn" onClick={resetForm}><i className="fas fa-rotate-left" />Reset</button>
             </div>
           </form>
         </section>
 
         <section className="balance-reports form-section">
-          <h3>Reserve List</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-list-check" /></span>Reserve List</h3>
           <div className="reports-table">
             <table>
               <thead>
@@ -161,8 +161,8 @@ const Reserve = () => {
                               <td>{it.description || '-'}</td>
                               <td>{typeof it.date === 'string' ? it.date : new Date(it.date).toLocaleDateString()}</td>
                               <td className="item-actions">
-                                <button className="btn" onClick={() => startEdit(it)}>Edit</button>
-                                <button className="btn btn-danger" onClick={() => handleDelete(it._id)}>Delete</button>
+                                <button className="btn" onClick={() => startEdit(it)}><i className="fas fa-pen" />Edit</button>
+                                <button className="btn btn-danger" onClick={() => handleDelete(it._id)}><i className="fas fa-trash" />Delete</button>
                               </td>
                             </tr>
                           ))

@@ -53,9 +53,9 @@ const Register = () => {
       <div className="auth-bg" style={{ backgroundImage: `url(${authBg})` }} />
       <div className="auth-hero">
         <div className="auth-hero-left">
-          <h1 className="hero-title">Create an account</h1>
+          <h1 className="hero-title title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-user-plus" /></span>Create an account</h1>
           <p className="hero-sub">Join your team and manage products, purchases and orders in one place.</p>
-          <button type="button" className="btn hero-cta">Learn More</button>
+          <button type="button" className="btn hero-cta"><i className="fas fa-circle-info" />Learn More</button>
         </div>
 
         <div className="auth-hero-right">
@@ -67,22 +67,22 @@ const Register = () => {
             </div>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Email</label>
+                <label><i className="fas fa-envelope inline-icon" />Email</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required aria-label="email" autoComplete="email" />
               </div>
               <div className="form-group">
-                <label>Password</label>
+                <label><i className="fas fa-lock inline-icon" />Password</label>
                 <input type="password" value={password} onChange={(e) => { setPassword(e.target.value); calcStrength(e.target.value); }} required aria-label="password" autoComplete="new-password" />
                 <div className="password-strength"><i style={{ width: pwStrength + '%' }} /></div>
               </div>
               <div className="form-group">
-                <label>Confirm password</label>
+                <label><i className="fas fa-key inline-icon" />Confirm password</label>
                 <input type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} required aria-label="confirm-password" autoComplete="new-password" />
               </div>
               {error && <p className="error-text">{error}</p>}
               {infoMessage && <p className="error-text">{infoMessage}</p>}
               <div style={{ marginTop: 12 }}>
-                <button className="btn btn-primary" type="submit" disabled={loading}>{loading ? <><span className="spinner"/> Registering...</> : 'Register'}</button>
+                <button className="btn btn-primary" type="submit" disabled={loading}>{loading ? <><span className="spinner"/> Registering...</> : <><i className="fas fa-user-check" />Register</>}</button>
               </div>
             </form>
           </div>

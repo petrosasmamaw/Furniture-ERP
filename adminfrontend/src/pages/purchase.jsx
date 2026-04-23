@@ -151,12 +151,12 @@ const Purchase = () => {
     <div className="page-container">
       <div className="balance-page">
         <div className="balance-header">
-          <h1>Purchases</h1>
-          <div className="current-balance"><h2>Total Purchases: {purchasesList.length}</h2></div>
+          <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-cart-shopping" /></span>Purchases</h1>
+          <div className="current-balance"><h2><i className="fas fa-receipt inline-icon" />Total Purchases: {purchasesList.length}</h2></div>
         </div>
 
         <div className="balance-reports">
-          <h3>Purchases</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-table-list" /></span>Purchases</h3>
           <div className="reports-table">
             <table>
               <thead>
@@ -178,8 +178,8 @@ const Purchase = () => {
                     <td>{p.description || '—'}</td>
                     <td>{p.ethiopianDate || (p.date ? (typeof p.date === 'string' ? p.date : new Date(p.date).toLocaleString()) : '—')}</td>
                     <td>
-                      <button className="btn btn-sm" onClick={() => startEdit(p)}>Edit</button>
-                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(p._id)} style={{marginLeft:8}}>Delete</button>
+                      <button className="btn btn-sm" onClick={() => startEdit(p)}><i className="fas fa-pen" />Edit</button>
+                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(p._id)} style={{marginLeft:8}}><i className="fas fa-trash" />Delete</button>
                     </td>
                   </tr>
                 ))}
@@ -190,7 +190,7 @@ const Purchase = () => {
 
         <div className="balance-forms">
           <div className="form-section">
-            <h3>{isEditing ? 'Edit Purchase' : 'Create Purchase'}</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className={`fas ${isEditing ? 'fa-pen-to-square' : 'fa-square-plus'}`} /></span>{isEditing ? 'Edit Purchase' : 'Create Purchase'}</h3>
             <form onSubmit={isEditing ? handleUpdate : handleCreate} className="balance-form">
               <div className="form-group">
                 <label>Items Used (format: name:qty, name2:qty)</label>
@@ -221,8 +221,8 @@ const Purchase = () => {
               </div>
 
               <div style={{display:'flex', gap:12}}>
-                <button type="submit" className="btn btn-primary">{isEditing ? 'Update Purchase' : 'Create Purchase'}</button>
-                {isEditing && <button type="button" className="btn" onClick={() => { setIsEditing(false); setEditForm({ id: '', itemsUsed: '', price: '', paymentType: 'Balance', description: '' }); }}>Cancel</button>}
+                <button type="submit" className="btn btn-primary"><i className={`fas ${isEditing ? 'fa-floppy-disk' : 'fa-plus-circle'}`} />{isEditing ? 'Update Purchase' : 'Create Purchase'}</button>
+                {isEditing && <button type="button" className="btn" onClick={() => { setIsEditing(false); setEditForm({ id: '', itemsUsed: '', price: '', paymentType: 'Balance', description: '' }); }}><i className="fas fa-xmark" />Cancel</button>}
               </div>
             </form>
           </div>

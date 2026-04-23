@@ -28,18 +28,18 @@ const MachineDetail = () => {
       <div className="balance-page">
         <div className="balance-header">
           <div>
-            <h1>{name}</h1>
+            <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-gear" /></span>{name}</h1>
             <p style={{opacity:0.9}}>Serial: {serialNumber}</p>
             <p style={{opacity:0.85}}>Desc: {description || '—'}</p>
             <p style={{opacity:0.85}}>Worker: {worker || '—'}</p>
           </div>
           <div className="current-balance">
-            <h2>{status} — ${price?.toFixed(2)}</h2>
+            <h2><i className="fas fa-screwdriver-wrench inline-icon" />{status} — ${price?.toFixed(2)}</h2>
           </div>
         </div>
 
         <div className="balance-reports">
-          <h3>Machine Reports for {name}</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-file-lines" /></span>Machine Reports for {name}</h3>
           {reportsStatus === 'loading' ? (
             <p>Loading reports...</p>
           ) : (

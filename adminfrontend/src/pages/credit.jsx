@@ -101,13 +101,13 @@ const Credit = () => {
       <div className="balance-page">
         <div className="balance-header" style={{ display: 'flex', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <h1>Credit Management</h1>
+            <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-hand-holding-dollar" /></span>Credit Management</h1>
             <p className="workers-col" style={{ marginTop: 6 }}>Manage credit inflows and outflows</p>
           </div>
           <div className="current-balance">
             <div className="card amount" style={{ minWidth: 220, textAlign: 'right', padding: 16 }}>
               <div className="corner-accent" />
-              <h4 style={{ margin: 0, fontSize: '0.95rem' }}>Current Credit</h4>
+              <h4 style={{ margin: 0, fontSize: '0.95rem' }}><i className="fas fa-scale-balanced inline-icon" />Current Credit</h4>
               <p className="value" style={{ margin: 0, fontSize: '1.6rem' }}>{currentCredit.toFixed(2)} Birr</p>
             </div>
           </div>
@@ -115,7 +115,7 @@ const Credit = () => {
 
         <div className="balance-forms">
           <div className="form-section">
-            <h3>Credit In</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-circle-up" /></span>Credit In</h3>
             <form onSubmit={handleCreditInSubmit} className="balance-form">
               <div className="form-group">
                 <label>Payment ID:</label>
@@ -133,12 +133,12 @@ const Credit = () => {
                 <label>Remaining Credit after transaction:</label>
                 <span className="value">{(currentCredit + parseFloat(creditInForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
-              <button type="submit" className="btn btn-primary">Add Credit In</button>
+              <button type="submit" className="btn btn-primary"><i className="fas fa-plus-circle" />Add Credit In</button>
             </form>
           </div>
 
           <div className="form-section">
-            <h3>Credit Out</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-circle-down" /></span>Credit Out</h3>
             <form onSubmit={handleCreditOutSubmit} className="balance-form">
               <div className="form-group">
                 <label>Payment ID:</label>
@@ -157,13 +157,13 @@ const Credit = () => {
                 <span className="value">{(currentCredit - parseFloat(creditOutForm.amount || 0)).toFixed(2)} Birr</span>
               </div>
               {outError && <div style={{ color: 'red', marginBottom: 8 }}>{outError}</div>}
-              <button type="submit" className="btn btn-danger">Add Credit Out</button>
+              <button type="submit" className="btn btn-danger"><i className="fas fa-minus-circle" />Add Credit Out</button>
             </form>
           </div>
         </div>
 
         <div className="balance-reports">
-          <h3>Credit Reports</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-file-invoice-dollar" /></span>Credit Reports</h3>
           {reportStatus === 'loading' ? (
             <p>Loading reports...</p>
           ) : (

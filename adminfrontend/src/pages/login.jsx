@@ -32,9 +32,9 @@ const Login = () => {
       <div className="auth-bg" style={{ backgroundImage: `url(${authBg})` }} />
       <div className="auth-hero">
         <div className="auth-hero-left">
-          <h1 className="hero-title">Welcome!</h1>
+          <h1 className="hero-title title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-door-open" /></span>Welcome!</h1>
           <p className="hero-sub">Manage your furniture ERP — orders, inventory and staff from one place.</p>
-          <button type="button" className="btn hero-cta">Learn More</button>
+          <button type="button" className="btn hero-cta"><i className="fas fa-circle-info" />Learn More</button>
         </div>
 
         <div className="auth-hero-right">
@@ -46,18 +46,18 @@ const Login = () => {
             </div>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Email</label>
+                <label><i className="fas fa-envelope inline-icon" />Email</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required aria-label="email" autoComplete="email" />
               </div>
               <div className="form-group">
-                <label>Password</label>
+                <label><i className="fas fa-lock inline-icon" />Password</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required aria-label="password" autoComplete="current-password" />
               </div>
               {error && <p className="error-text">{error}</p>}
               {message && <p className="error-text">{message}</p>}
               <div style={{ marginTop: 12 }}>
                 <button className="btn btn-primary" type="submit" disabled={loading}>
-                  {loading && <span className="spinner" />} {loading ? 'Signing in...' : 'Sign In'}
+                  {loading && <span className="spinner" />} {!loading && <i className="fas fa-right-to-bracket" />} {loading ? 'Signing in...' : 'Sign In'}
                 </button>
               </div>
               <div style={{ marginTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

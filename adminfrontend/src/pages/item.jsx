@@ -102,13 +102,13 @@ const Item = () => {
     <div className="page-container">
       <div className="balance-page">
         <div className="balance-header">
-          <h1>Items</h1>
+          <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-boxes" /></span>Items</h1>
           <div className="current-balance">
-            <h2>Total Items: {items.length}</h2>
+            <h2><i className="fas fa-layer-group inline-icon" />Total Items: {items.length}</h2>
           </div>
         </div>
         <div className="balance-reports">
-          <h3>Items</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-list" /></span>Items</h3>
           <div className="reports-table">
             <table>
               <thead>
@@ -130,7 +130,7 @@ const Item = () => {
                     <td>{item.price?.toFixed(2)} Birr</td>
                     <td>{item.description}</td>
                     <td>
-                      <button className="btn" onClick={() => startEdit(item)}>Edit</button>
+                      <button className="btn" onClick={() => startEdit(item)}><i className="fas fa-pen" />Edit</button>
                     </td>
                   </tr>
                 ))}
@@ -141,7 +141,7 @@ const Item = () => {
 
         <div className="balance-forms">
           <div className="form-section">
-            <h3>{isEditing ? 'Edit Item' : 'Create Item'}</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className={`fas ${isEditing ? 'fa-pen-to-square' : 'fa-square-plus'}`} /></span>{isEditing ? 'Edit Item' : 'Create Item'}</h3>
             <form onSubmit={isEditing ? handleUpdateSubmit : handleCreateSubmit} className="balance-form">
               <div className="form-group">
                 <label>Name:</label>
@@ -164,14 +164,14 @@ const Item = () => {
                 <input type="number" step="0.01" value={isEditing ? editForm.price : createForm.price} onChange={(e) => isEditing ? setEditForm({...editForm, price: e.target.value}) : setCreateForm({...createForm, price: e.target.value})} required />
               </div>
               <div style={{display: 'flex', gap: '12px'}}>
-                <button type="submit" className="btn btn-primary">{isEditing ? 'Update Item' : 'Create Item'}</button>
-                {isEditing && <button type="button" className="btn" onClick={() => { setIsEditing(false); setEditForm({ id: '', name: '', itemId: '', description: '', quantity: '', price: '' }); }}>Cancel</button>}
+                <button type="submit" className="btn btn-primary"><i className={`fas ${isEditing ? 'fa-floppy-disk' : 'fa-plus-circle'}`} />{isEditing ? 'Update Item' : 'Create Item'}</button>
+                {isEditing && <button type="button" className="btn" onClick={() => { setIsEditing(false); setEditForm({ id: '', name: '', itemId: '', description: '', quantity: '', price: '' }); }}><i className="fas fa-xmark" />Cancel</button>}
               </div>
             </form>
           </div>
 
           <div className="form-section">
-            <h3>Material Reports</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-file-waveform" /></span>Material Reports</h3>
             <div className="reports-table">
               <table>
                 <thead>

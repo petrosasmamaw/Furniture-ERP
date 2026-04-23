@@ -36,7 +36,7 @@ const PriceCalculator = () => {
     <div className="page-container">
       <div className="balance-page">
         <div className="balance-header">
-          <h1>Price Calculator</h1>
+          <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-calculator" /></span>Price Calculator</h1>
         </div>
 
         <div className="form-section">
@@ -46,19 +46,19 @@ const PriceCalculator = () => {
               <input className="price-input" placeholder="Amount" type="number" value={r.amount} onChange={(e) => updateRow(i, 'amount', e.target.value)} />
               <input className="price-input" placeholder="Price" type="number" value={r.price} onChange={(e) => updateRow(i, 'price', e.target.value)} />
               {i === rows.length - 1 && (
-                <button type="button" className="btn add-row-btn" onClick={addRow}>+</button>
+                <button type="button" className="btn add-row-btn" onClick={addRow}><i className="fas fa-plus" /></button>
               )}
             </div>
           ))}
 
           <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
-            <button type="button" className="btn btn-primary calc-btn" onClick={calculate}>Calculate</button>
-            <button type="button" className="btn" onClick={reset}>Reset</button>
+            <button type="button" className="btn btn-primary calc-btn" onClick={calculate}><i className="fas fa-equals" />Calculate</button>
+            <button type="button" className="btn" onClick={reset}><i className="fas fa-rotate-left" />Reset</button>
           </div>
 
           {results && (
             <div className="price-results">
-              <h3>Results</h3>
+              <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-chart-column" /></span>Results</h3>
               <ul>
                 {results.descriptions.map((d, idx) => <li key={idx}>{d}</li>)}
               </ul>

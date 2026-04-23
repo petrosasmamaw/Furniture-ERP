@@ -96,14 +96,14 @@ const Machine = () => {
     <div className="page-container">
       <div className="balance-page">
         <div className="balance-header">
-          <h1>Machines</h1>
+          <h1 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-cogs" /></span>Machines</h1>
           <div className="current-balance">
-            <h2>Total Machines: {machines.length}</h2>
+            <h2><i className="fas fa-microchip inline-icon" />Total Machines: {machines.length}</h2>
           </div>
         </div>
 
         <div className="balance-reports">
-          <h3>Machines</h3>
+          <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-list" /></span>Machines</h3>
           <div className="reports-table">
             <table>
               <thead>
@@ -126,7 +126,7 @@ const Machine = () => {
                     <td><span className={`status-badge status-${m.status.replace(/\s+/g,'-')}`}>{m.status}</span></td>
                     <td>{m.price?.toFixed(2)} Birr</td>
                     <td>{m.description}</td>
-                    <td><button className="btn" onClick={() => startEdit(m)}>Edit</button></td>
+                    <td><button className="btn" onClick={() => startEdit(m)}><i className="fas fa-pen" />Edit</button></td>
                   </tr>
                 ))}
               </tbody>
@@ -136,7 +136,7 @@ const Machine = () => {
 
         <div className="balance-forms">
           <div className="form-section">
-            <h3>{isEditing ? 'Edit Machine' : 'Create Machine'}</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className={`fas ${isEditing ? 'fa-pen-to-square' : 'fa-square-plus'}`} /></span>{isEditing ? 'Edit Machine' : 'Create Machine'}</h3>
             <form onSubmit={isEditing ? handleUpdate : handleCreate} className="balance-form">
               <div className="form-group">
                 <label>Name:</label>
@@ -167,14 +167,14 @@ const Machine = () => {
                 </select>
               </div>
               <div style={{display: 'flex', gap: '12px'}}>
-                <button type="submit" className="btn btn-primary">{isEditing ? 'Update Machine' : 'Create Machine'}</button>
-                {isEditing && <button type="button" className="btn" onClick={() => { setIsEditing(false); setEditForm({ id: '', name: '', serialNumber: '', description: '', price: '', status: 'In Store', worker: '' }); }}>Cancel</button>}
+                <button type="submit" className="btn btn-primary"><i className={`fas ${isEditing ? 'fa-floppy-disk' : 'fa-plus-circle'}`} />{isEditing ? 'Update Machine' : 'Create Machine'}</button>
+                {isEditing && <button type="button" className="btn" onClick={() => { setIsEditing(false); setEditForm({ id: '', name: '', serialNumber: '', description: '', price: '', status: 'In Store', worker: '' }); }}><i className="fas fa-xmark" />Cancel</button>}
               </div>
             </form>
           </div>
 
           <div className="form-section">
-            <h3>Machine Reports</h3>
+            <h3 className="title-with-icon"><span className="section-icon" aria-hidden="true"><i className="fas fa-file-lines" /></span>Machine Reports</h3>
             <div className="reports-table">
               <table>
                 <thead>
