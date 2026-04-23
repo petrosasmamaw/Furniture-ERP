@@ -122,38 +122,52 @@ const Dashboard = () => {
     <div className="page-container">
       <div className="dashboard-overview" style={{ gap: 12, marginBottom: 20 }}>
         <div className="stat-card card">
-          <div className="corner-accent" />
-          <h3>Items</h3>
+          <div className="stat-top">
+            <h3>Items</h3>
+            <span className="icon" aria-hidden="true"><i className="fas fa-boxes" /></span>
+          </div>
           <p className="value">{items.length}</p>
         </div>
         <div className="stat-card card">
-          <div className="corner-accent" />
-          <h3>Machines</h3>
+          <div className="stat-top">
+            <h3>Machines</h3>
+            <span className="icon" aria-hidden="true"><i className="fas fa-cogs" /></span>
+          </div>
           <p className="value">{machines.length}</p>
         </div>
         <div className="stat-card card">
-          <div className="corner-accent" />
-          <h3>Orders</h3>
+          <div className="stat-top">
+            <h3>Orders</h3>
+            <span className="icon" aria-hidden="true"><i className="fas fa-file-invoice" /></span>
+          </div>
           <p className="value">{orders.length}</p>
         </div>
         <div className="stat-card card">
-          <div className="corner-accent" />
-          <h3>Purchases</h3>
+          <div className="stat-top">
+            <h3>Purchases</h3>
+            <span className="icon" aria-hidden="true"><i className="fas fa-shopping-cart" /></span>
+          </div>
           <p className="value">{purchases.length}</p>
         </div>
         <div className="card amount">
-          <div className="corner-accent" />
-          <h3>Total Balance</h3>
+          <div className="stat-top">
+            <h3>Total Balance</h3>
+            <span className="icon" aria-hidden="true"><i className="fas fa-wallet" /></span>
+          </div>
           <p className="value">${totalBalance.toFixed(2)}</p>
         </div>
         <div className="stat-card card">
-          <div className="corner-accent" />
-          <h3>Total Credit</h3>
+          <div className="stat-top">
+            <h3>Total Credit</h3>
+            <span className="icon" aria-hidden="true"><i className="fas fa-hand-holding-usd" /></span>
+          </div>
           <p className="value">${totalCredit.toFixed(2)}</p>
         </div>
         <div className="stat-card card">
-          <div className="corner-accent" />
-          <h3>Profit</h3>
+          <div className="stat-top">
+            <h3>Profit</h3>
+            <span className="icon" aria-hidden="true"><i className="fas fa-chart-line" /></span>
+          </div>
           <p className={totalProfit >= 0 ? 'type-added value' : 'type-used value'}>${totalProfit.toFixed(2)}</p>
         </div>
       </div>
