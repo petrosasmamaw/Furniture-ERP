@@ -173,7 +173,10 @@ const Dashboard = () => {
       </div>
 
       <div className="chart-card" style={{ marginTop: 12 }}>
-        <h3>Overview</h3>
+        <h3 className="chart-title-with-icon">
+          <span className="chart-icon" aria-hidden="true"><i className="fas fa-chart-area" /></span>
+          Overview
+        </h3>
         <div style={{ height: 300 }}>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={overviewData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
@@ -195,7 +198,10 @@ const Dashboard = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 20 }}>
         <div className="chart-card">
-          <h4 className="chart-title">Balance: Added vs Used</h4>
+          <h4 className="chart-title chart-title-with-icon">
+            <span className="chart-icon" aria-hidden="true"><i className="fas fa-scale-balanced" /></span>
+            Balance: Added vs Used
+          </h4>
           <div style={{ height: 260 }}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={balanceChartData} margin={{ top: 6, right: 12, left: 0, bottom: 0 }}>
@@ -221,7 +227,10 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="chart-card">
-          <h4 className="chart-title">Credit: Taken vs Paid</h4>
+          <h4 className="chart-title chart-title-with-icon">
+            <span className="chart-icon" aria-hidden="true"><i className="fas fa-money-check-dollar" /></span>
+            Credit: Taken vs Paid
+          </h4>
           <div style={{ height: 260 }}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={creditChartData} margin={{ top: 6, right: 12, left: 0, bottom: 0 }}>

@@ -334,6 +334,9 @@ body::before{
 /* Chart cards use softer glass tone */
 .chart-card{background:linear-gradient(180deg, rgba(255,255,255,0.86), rgba(246,244,255,0.86));border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 18px 48px rgba(99,72,255,0.06)}
 .chart-title{margin:0 0 8px 0;font-size:1rem;color:#0f172a}
+.chart-title-with-icon{display:flex;align-items:center;gap:10px}
+.chart-icon{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg, rgba(124,76,255,0.12), rgba(63,180,255,0.14));border:1px solid rgba(124,76,255,0.16)}
+.chart-icon i{font-size:14px;color:#3749c8}
 .chart-card canvas{max-height:240px}
 
 @media (max-width:900px){.page-container > div[style]{grid-template-columns:1fr !important}.dashboard-overview{margin-top:12px}}
