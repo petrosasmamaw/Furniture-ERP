@@ -8,7 +8,7 @@ export const getCreditReports = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
+  
 export const getCreditReportById = async (req, res) => {
   try {
     const report = await CreditReport.findById(req.params.id);
